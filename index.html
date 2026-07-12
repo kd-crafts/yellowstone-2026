@@ -36,7 +36,7 @@
     --trans-light: #E8E4F2;
     --text: #2C2420;
     --text-muted: #7A6652;
-    --text-light: #A0927E;
+    --text-light: #7E6C54;
     --border: rgba(122,102,82,0.18);
     --shadow: 0 2px 16px rgba(44,36,32,0.08);
     --radius: 12px;
@@ -147,6 +147,25 @@
   }
 
   /* DAY CARD */
+  .list-controls { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .expand-all {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 16px;
+    min-height: 40px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(45,74,62,0.10);
+  }
+  .expand-all:active { background: var(--cream-dark); }
+  @media (hover: hover) {
+    .expand-all:hover { background: var(--cream-dark); border-color: var(--text-light); }
+  }
+
   .day-card {
     background: #fff;
     border: 1px solid var(--border);
@@ -203,20 +222,20 @@
   }
   .day-title-inner { flex: 1; min-width: 0; }
   .day-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--text);
     line-height: 1.3;
   }
   .day-stat {
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--text-light);
     margin-top: 3px;
   }
   .day-stat strong { color: var(--text-muted); font-weight: 500; }
 
   .badge {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     border-radius: 5px;
     padding: 2px 8px;
@@ -229,10 +248,10 @@
   .b-trans { background: var(--trans-light); color: var(--trans); }
 
   .chevron {
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
     flex-shrink: 0;
-    color: var(--text-light);
+    color: var(--text-muted);
     transition: transform 0.2s ease;
     margin-left: 6px;
   }
@@ -281,12 +300,12 @@
     padding: 12px 14px;
   }
   .craters-title {
-    font-size: 12px;
+    font-size: 13.5px;
     font-weight: 500;
     color: var(--amber);
     margin-bottom: 5px;
   }
-  .craters-body { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+  .craters-body { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 
   /* STOPS */
   .stops-section { padding: 14px 16px; }
@@ -321,7 +340,7 @@
   .stop-icon.normal { color: var(--stone); font-size: 16px; line-height: 1; }
   .stop-icon.opt { color: var(--stone); }
   .stop-icon.tip { color: var(--text-light); }
-  .stop-text { font-size: 12.5px; line-height: 1.55; flex: 1; }
+  .stop-text { font-size: 14px; line-height: 1.55; flex: 1; }
   .stop-text.must { color: var(--text); }
   .stop-text.normal { color: var(--text-muted); }
   .stop-text.opt { color: var(--text-light); }
@@ -356,7 +375,7 @@
     display: flex;
     gap: 8px;
     align-items: flex-start;
-    font-size: 12px;
+    font-size: 13.5px;
     color: var(--text-muted);
     background: var(--cream-dark);
     border-left: 3px solid var(--forest-light);
@@ -367,7 +386,7 @@
   }
   .geo-note strong { color: var(--text); font-weight: 600; }
   .route-caption {
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--text-light);
     margin-top: 8px;
     line-height: 1.45;
@@ -387,7 +406,7 @@
   }
   .tl-item { display: grid; grid-template-columns: 54px 1fr; gap: 10px; }
   .tl-time {
-    font-size: 11px;
+    font-size: 12.5px;
     font-weight: 500;
     color: var(--text-muted);
     text-align: right;
@@ -412,10 +431,10 @@
     border: 2px solid var(--cream);
   }
   .tl-dot.drive { background: var(--stone); width: 8px; height: 8px; left: 1px; top: 4px; }
-  .tl-name { font-size: 13px; font-weight: 500; color: var(--text); }
-  .tl-dur { font-size: 11px; color: var(--amber); font-weight: 500; }
-  .tl-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.45; }
-  .tl-drive { font-size: 11px; color: var(--text-light); font-style: italic; }
+  .tl-name { font-size: 15px; font-weight: 500; color: var(--text); }
+  .tl-dur { font-size: 12.5px; color: var(--amber); font-weight: 500; }
+  .tl-desc { font-size: 14px; color: var(--text-muted); margin-top: 2px; line-height: 1.5; }
+  .tl-drive { font-size: 12.5px; color: var(--text-light); font-style: italic; }
 
   /* SLEEP */
   .sleep-row {
@@ -429,8 +448,8 @@
   }
   .sleep-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
   .sleep-info { flex: 1; min-width: 0; }
-  .sleep-name { font-size: 12.5px; font-weight: 500; color: var(--text); }
-  .sleep-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; line-height: 1.45; }
+  .sleep-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .sleep-meta { font-size: 13px; color: var(--text-muted); margin-top: 1px; line-height: 1.45; }
   .sleep-nights { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
   .sleep-dir {
     display: inline-flex;
@@ -462,16 +481,28 @@
     margin-top: 24px;
     box-shadow: var(--shadow);
   }
+  .missing-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    min-height: 44px;
+    -webkit-tap-highlight-color: rgba(45,74,62,0.10);
+  }
   .missing-title {
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .08em;
     color: var(--text-light);
-    margin-bottom: 12px;
   }
+  .missing-body { display: none; padding-top: 14px; }
+  .missing-card.open .missing-body { display: block; }
+  .missing-card.open .chevron { transform: rotate(180deg); }
   .missing-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .missing-item { font-size: 12.5px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.55; }
+  .missing-item { font-size: 14px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.55; }
   .missing-item::before { content: '—'; position: absolute; left: 0; color: var(--stone); }
 
   /* FOOTER */
@@ -539,11 +570,11 @@
     .day-header { padding: 14px; gap: 12px; align-items: flex-start; }
     .day-num-col { min-width: 46px; }
     .day-num { font-size: 12px; }
-    .day-date { font-size: 11px; }
-    .day-title { font-size: 16px; line-height: 1.3; }
-    .day-stat { font-size: 12.5px; line-height: 1.5; margin-top: 4px; }
-    .badge { font-size: 10px; padding: 3px 7px; }
-    .chevron { width: 15px; height: 15px; }
+    .day-date { font-size: 14px; }
+    .day-title { font-size: 18px; line-height: 1.3; }
+    .day-stat { font-size: 14px; line-height: 1.5; margin-top: 4px; }
+    .badge { font-size: 11px; padding: 3px 7px; }
+    .chevron { width: 22px; height: 22px; }
 
     /* Timeline: the core reading experience */
     .timeline { margin: 14px 12px 0; }
@@ -551,53 +582,58 @@
     .tl-item { grid-template-columns: 50px 1fr; gap: 8px; }
     .tl-time { font-size: 12px; }
     .tl-body { padding-left: 18px; padding-bottom: 16px; }
-    .tl-name { font-size: 15px; line-height: 1.35; }
-    .tl-dur { font-size: 12.5px; display: inline-block; }
-    .tl-desc { font-size: 14px; line-height: 1.6; margin-top: 4px; }
-    .tl-drive { font-size: 12.5px; line-height: 1.5; display: inline-block; }
+    .tl-name { font-size: 16px; line-height: 1.35; }
+    .tl-dur { font-size: 13px; display: inline-block; }
+    .tl-desc { font-size: 15.5px; line-height: 1.6; margin-top: 4px; }
+    .tl-drive { font-size: 13.5px; line-height: 1.5; display: inline-block; }
 
     /* Stops */
     .stops-section { padding: 14px 12px; }
     .sublabel { font-size: 11.5px; }
     .stop { gap: 8px; margin-bottom: 12px; }
-    .stop-text { font-size: 14px; line-height: 1.6; }
-    .stop-icon { font-size: 13px; }
+    .stop-text { font-size: 15.5px; line-height: 1.6; }
+    .stop-icon { font-size: 14px; }
 
     /* Boxes */
     .craters-box, .geo-note { margin-left: 12px; margin-right: 12px; padding: 13px; }
-    .craters-title { font-size: 14px; }
-    .craters-body { font-size: 13.5px; line-height: 1.65; }
-    .geo-note { font-size: 13.5px; line-height: 1.6; }
+    .craters-title { font-size: 15.5px; }
+    .craters-body { font-size: 15px; line-height: 1.65; }
+    .geo-note { font-size: 15px; line-height: 1.6; }
 
     /* Map block */
     .map-block { margin: 14px 12px 0; }
-    .map-cta { font-size: 15px; padding: 14px; }
+    .map-cta { font-size: 16px; padding: 14px; }
     .map-embed iframe { height: 240px; }
-    .route-caption { font-size: 12px; line-height: 1.55; }
+    .route-caption { font-size: 13.5px; line-height: 1.55; }
 
     /* Sleep row */
     .sleep-row { padding: 14px 12px; }
-    .sleep-name { font-size: 14px; }
-    .sleep-meta { font-size: 12.5px; }
+    .sleep-name { font-size: 15.5px; }
+    .sleep-meta { font-size: 13.5px; }
     .sleep-nights { font-size: 11px; }
-    .sleep-dir { font-size: 12.5px; padding: 8px 12px; margin-left: 0; }
+    .sleep-dir { font-size: 13.5px; padding: 8px 12px; margin-left: 0; }
 
     /* Missing / checklist */
     .missing-card { padding: 16px 14px; }
-    .missing-title { font-size: 14px; }
-    .missing-item { font-size: 13.5px; line-height: 1.65; }
+    .missing-title { font-size: 15.5px; }
+    .missing-item { font-size: 15px; line-height: 1.65; }
   }
 
   @media (max-width: 380px) {
     .hero h1 { font-size: 24px; }
-    .tl-item { grid-template-columns: 44px 1fr; gap: 6px; }
-    .tl-time { font-size: 11.5px; }
-    .day-title { font-size: 15px; }
+    .tl-item { grid-template-columns: 46px 1fr; gap: 6px; }
+    .tl-time { font-size: 12.5px; }
+    .day-title { font-size: 17px; }
   }
 
   /* Tap targets: never smaller than comfortable */
   .map-cta, .sleep-dir, .day-header { min-height: 44px; }
-  .day-header { cursor: pointer; -webkit-tap-highlight-color: rgba(45,74,62,0.06); }
+  .day-header { cursor: pointer; -webkit-tap-highlight-color: rgba(45,74,62,0.10); transition: background 0.15s ease; }
+  @media (hover: hover) {
+    .day-header:hover { background: var(--cream-dark); }
+    .day-header:hover .chevron { color: var(--forest); }
+    .missing-header:hover .chevron { color: var(--forest); }
+  }
 </style>
 </head>
 <body>
@@ -633,11 +669,15 @@
 
 <div class="container">
 
+  <div class="list-controls">
+    <button class="expand-all" onclick="toggleAll(this)">Expand all</button>
+  </div>
+
   <!-- ── DRIVE NORTH ── -->
   <div class="section-break"><span>Getting there — Idaho route</span></div>
 
   <!-- DAY 1 -->
-  <div class="day-card open" id="d1">
+  <div class="day-card" id="d1">
     <div class="day-header" onclick="toggle('d1')">
       <div class="day-num-col">
         <div class="day-num">Day 1</div>
@@ -649,7 +689,7 @@
           <div class="day-title">Santa Clara → Shoshone Falls → Twin Falls</div>
           <div class="day-stat"><strong>~705 mi · ~11 hrs driving</strong> · +1.5 hrs breaks · 4:30a → ~6:00p (MT)</div></div>
         <span class="badge b-drive">Drive</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -729,16 +769,16 @@
         <span class="sleep-icon">🛏</span>
         <div class="sleep-info">
           <div class="sleep-name">Quality Inn &amp; Suites Twin Falls North</div>
-          <div class="sleep-meta">1910 Fillmore St, Twin Falls, ID 83301 · +1 208-825-3670</div>
+          <div class="sleep-meta">1910 Fillmore Street North, Twin Falls, ID 83301 · +1 208-825-3670</div>
           <div class="sleep-nights">1 night · Jul 17</div>
         </div>
-        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Quality+Inn+%26+Suites+Twin+Falls+North%2C+1910+Fillmore+St%2C+Twin+Falls%2C+ID+83301" target="_blank" rel="noopener">↳ Directions</a>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Quality+Inn+%26+Suites+Twin+Falls+North%2C+1910+Fillmore+Street+North%2C+Twin+Falls%2C+ID+83301" target="_blank" rel="noopener">↳ Directions</a>
       </div>
     </div>
   </div>
 
   <!-- DAY 2 -->
-  <div class="day-card open" id="d2">
+  <div class="day-card" id="d2">
     <div class="day-header" onclick="toggle('d2')">
       <div class="day-num-col">
         <div class="day-num">Day 2</div>
@@ -747,19 +787,19 @@
       </div>
       <div class="day-title-col">
         <div class="day-title-inner">
-          <div class="day-title">Shoshone Falls → Craters → Costco → Island Park VRBO</div>
+          <div class="day-title">Twin Falls → Craters → Costco → Island Park VRBO</div>
           <div class="day-stat"><strong>272 mi · 4h 38m driving</strong> · +3.5 hrs stops · 9:00a → ~5:00p</div></div>
         <span class="badge b-drive">Drive + park</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Shoshone+Falls%2C+Twin+Falls%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Craters+of+the+Moon+National+Monument%7CCostco+Idaho+Falls" target="_blank" rel="noopener">🗺️ Open Day 2 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=1910+Fillmore+Street+North%2C+Twin+Falls%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Craters+of+the+Moon+National+Monument%7CCostco+Idaho+Falls" target="_blank" rel="noopener">🗺️ Open Day 2 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Shoshone+Falls,+Twin+Falls,+ID&daddr=Craters+of+the+Moon+National+Monument+to:Costco,+Idaho+Falls,+ID+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=1910+Fillmore+Street+North,+Twin+Falls,+ID&daddr=Craters+of+the+Moon+National+Monument+to:Costco,+Idaho+Falls,+ID+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
         </div>
         <div class="route-caption">US-93 and US-20 northeast across the Snake River plain. Total driving today: 272 mi · 4h 38m (Google).</div>
       </div>
@@ -857,7 +897,7 @@
           <div class="day-title">Southwest Lower Loop — Geyser Country</div>
           <div class="day-stat"><strong>~95 mi · ~3 hrs driving</strong> · 7:00a → ~4:30p · lightest driving, most walking</div></div>
         <span class="badge b-yellow">Yellowstone</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1040,7 +1080,7 @@
           <div class="day-title">Lamar Valley — wildlife day <span style="font-size:11px;color:var(--amber);font-weight:600;">LONG</span></div>
           <div class="day-stat"><strong>~165 mi · ~5 hrs driving</strong> · 5:00a → ~2:45p · the one early start</div></div>
         <span class="badge b-yellow">Yellowstone</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1154,7 +1194,7 @@
           <div class="day-title">Norris + Mammoth Hot Springs</div>
           <div class="day-stat"><strong>~130 mi · ~4 hrs driving</strong> · 7:30a → ~4:15p</div></div>
         <span class="badge b-yellow">Yellowstone</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1299,7 +1339,7 @@
           <div class="day-title">Grand Canyon of Yellowstone <span style="font-size:11px;color:var(--amber);font-weight:600;">FULL</span></div>
           <div class="day-stat"><strong>~150 mi · ~5.5 hrs driving</strong> · 7:00a → ~6:15p · Hayden optional (saves ~2h45m)</div></div>
         <span class="badge b-yellow">Yellowstone</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1514,7 +1554,7 @@
   <div class="section-break"><span>Transition — Yellowstone exit + North Grand Teton</span></div>
 
   <!-- DAY 7 -->
-  <div class="day-card open" id="d7">
+  <div class="day-card" id="d7">
     <div class="day-header" onclick="toggle('d7')">
       <div class="day-num-col">
         <div class="day-num">Day 7</div>
@@ -1526,7 +1566,7 @@
           <div class="day-title">Exit Yellowstone south → North Grand Teton → Driggs</div>
           <div class="day-stat"><strong>~165 mi · ~4 hrs driving</strong> · 8:30a → ~4:45p · exit Yellowstone, north Teton, Driggs</div></div>
         <span class="badge b-trans">Transition</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1534,9 +1574,9 @@
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=Driggs%2C+ID&waypoints=West+Thumb+Geyser+Basin%2C+Yellowstone%7CColter+Bay%2C+Grand+Teton%7COxbow+Bend%2C+Grand+Teton%7CSignal+Mountain+Summit%2C+Grand+Teton" target="_blank" rel="noopener">🗺️ Open Day 7 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=1361+North+Highway+33%2C+Driggs%2C+ID&waypoints=West+Thumb+Geyser+Basin%2C+Yellowstone%7CColter+Bay%2C+Grand+Teton%7COxbow+Bend%2C+Grand+Teton%7CSignal+Mountain+Summit%2C+Grand+Teton" target="_blank" rel="noopener">🗺️ Open Day 7 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=West+Thumb+Geyser+Basin,+Yellowstone+to:Colter+Bay,+Grand+Teton+to:Signal+Mountain+Summit,+Grand+Teton+to:Driggs,+ID&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=West+Thumb+Geyser+Basin,+Yellowstone+to:Colter+Bay,+Grand+Teton+to:Signal+Mountain+Summit,+Grand+Teton+to:1361+North+Highway+33,+Driggs,+ID&output=embed"></iframe>
         </div>
         <div class="route-caption">South through Yellowstone, out the south gate, down through Grand Teton's north zone, then west over to Driggs via Moran and Tetonia (no Teton Pass needed today).</div>
       </div>
@@ -1642,10 +1682,10 @@
         <span class="sleep-icon">🛏</span>
         <div class="sleep-info">
           <div class="sleep-name">Super 8 by Wyndham Driggs (Teton base)</div>
-          <div class="sleep-meta">1361 ID-33, Driggs, ID 83422 · +1 208-953-1919</div>
+          <div class="sleep-meta">1361 North Highway 33, Driggs, ID 83422 · +1 208-953-1919</div>
           <div class="sleep-nights">Night 1 of 2 · Jul 23</div>
         </div>
-        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+ID-33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+North+Highway+33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
       </div>
     </div>
   </div>
@@ -1666,7 +1706,7 @@
           <div class="day-title">Jenny Lake + valley floor + Jackson</div>
           <div class="day-stat"><strong>~140 mi · ~3.5 hrs driving</strong> · 7:00a → ~7:30p · scenic loop + Jenny Lake + Jackson</div></div>
         <span class="badge b-teton">Grand Teton</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
@@ -1687,9 +1727,9 @@
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Driggs%2C+ID&destination=Driggs%2C+ID&waypoints=Mormon+Row%2C+Grand+Teton%7CSnake+River+Overlook%7CJenny+Lake%2C+Grand+Teton%7CString+Lake%2C+Grand+Teton%7CJackson%2C+WY" target="_blank" rel="noopener">🗺️ Open Day 8 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=1361+North+Highway+33%2C+Driggs%2C+ID&destination=1361+North+Highway+33%2C+Driggs%2C+ID&waypoints=Mormon+Row%2C+Grand+Teton%7CSnake+River+Overlook%7CJenny+Lake%2C+Grand+Teton%7CString+Lake%2C+Grand+Teton%7CJackson%2C+WY" target="_blank" rel="noopener">🗺️ Open Day 8 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Driggs,+ID&daddr=Mormon+Row,+Grand+Teton+to:Snake+River+Overlook,+Grand+Teton+to:Jenny+Lake,+Grand+Teton+to:Jackson,+WY&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=1361+North+Highway+33,+Driggs,+ID&daddr=Mormon+Row,+Grand+Teton+to:Snake+River+Overlook,+Grand+Teton+to:Jenny+Lake,+Grand+Teton+to:Jackson,+WY&output=embed"></iframe>
         </div>
         <div class="route-caption">Over Teton Pass into the valley. North up the outer road (US-89/191) for the classic viewpoints, south down the inner road (Teton Park Rd) for the lakes and peaks — that's the 42-mile scenic loop. Then straight down US-89 to Jackson for dinner, and back over the pass.</div>
       </div>
@@ -1830,10 +1870,10 @@
         <span class="sleep-icon">🛏</span>
         <div class="sleep-info">
           <div class="sleep-name">Super 8 by Wyndham Driggs (Teton base)</div>
-          <div class="sleep-meta">1361 ID-33, Driggs, ID 83422 · +1 208-953-1919</div>
+          <div class="sleep-meta">1361 North Highway 33, Driggs, ID 83422 · +1 208-953-1919</div>
           <div class="sleep-nights">Night 2 of 2 · Jul 24 · last Teton night</div>
         </div>
-        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+ID-33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+North+Highway+33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
       </div>
     </div>
   </div>
@@ -1854,16 +1894,16 @@
           <div class="day-title">Checkout Driggs → SLC brief stop → Bonneville Salt Flats → Elko</div>
           <div class="day-stat"><strong>~510 mi · ~8 hrs driving</strong> · 8:00a → ~6:00p · the long return leg</div></div>
         <span class="badge b-drive">Drive</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Driggs%2C+ID&destination=Elko%2C+NV&waypoints=Salt+Lake+City%2C+UT%7CBonneville+Salt+Flats" target="_blank" rel="noopener">🗺️ Open Day 9 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=1361+North+Highway+33%2C+Driggs%2C+ID&destination=1500+Idaho+Street%2C+Elko%2C+NV&waypoints=Salt+Lake+City%2C+UT%7CBonneville+Salt+Flats" target="_blank" rel="noopener">🗺️ Open Day 9 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Driggs,+ID&daddr=Salt+Lake+City,+UT+to:Bonneville+Salt+Flats+to:Elko,+NV&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=1361+North+Highway+33,+Driggs,+ID&daddr=Salt+Lake+City,+UT+to:Bonneville+Salt+Flats+to:1500+Idaho+Street,+Elko,+NV&output=embed"></iframe>
         </div>
         <div class="route-caption">The big return leg: I-15 south to Salt Lake City, then I-80 west across the salt flats into Nevada. The longest driving day of the trip.</div>
       </div>
@@ -1917,10 +1957,10 @@
         <span class="sleep-icon">🛏</span>
         <div class="sleep-info">
           <div class="sleep-name">Days Inn by Wyndham Elko</div>
-          <div class="sleep-meta">1500 Idaho St, Elko, NV 89801 · +1 775-299-5424</div>
+          <div class="sleep-meta">1500 Idaho Street, Elko, NV 89801 · +1 775-299-5424</div>
           <div class="sleep-nights">1 night · Jul 25</div>
         </div>
-        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Days+Inn+by+Wyndham+Elko%2C+1500+Idaho+St%2C+Elko%2C+NV+89801" target="_blank" rel="noopener">↳ Directions</a>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Days+Inn+by+Wyndham+Elko%2C+1500+Idaho+Street%2C+Elko%2C+NV+89801" target="_blank" rel="noopener">↳ Directions</a>
       </div>
     </div>
   </div>
@@ -1938,16 +1978,16 @@
           <div class="day-title">Elko → Santa Clara</div>
           <div class="day-stat"><strong>~520 mi · ~8 hrs driving</strong> · 8:00a → ~4:45p · I-80 west, one stop in Reno</div></div>
         <span class="badge b-drive">Drive</span>
-        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
       </div>
     </div>
     <div class="day-body">
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Elko%2C+NV&destination=3681+Peacock+Ct%2C+Santa+Clara%2C+CA&waypoints=Reno%2C+NV" target="_blank" rel="noopener">🗺️ Open Day 10 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=1500+Idaho+Street%2C+Elko%2C+NV&destination=3681+Peacock+Ct%2C+Santa+Clara%2C+CA&waypoints=Reno%2C+NV" target="_blank" rel="noopener">🗺️ Open Day 10 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Elko,+NV&daddr=Reno,+NV+to:3681+Peacock+Ct,+Santa+Clara,+CA&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=1500+Idaho+Street,+Elko,+NV&daddr=Reno,+NV+to:3681+Peacock+Ct,+Santa+Clara,+CA&output=embed"></iframe>
         </div>
         <div class="route-caption">Straight shot home on I-80 west — Nevada high desert, over Donner Pass, down into the Sacramento Valley and the Bay.</div>
       </div>
@@ -1990,34 +2030,44 @@
   </div>
 
   <!-- MISSING -->
-  <div class="missing-card">
-    <div class="missing-title">Not in the current plan — worth discussing</div>
-    <ul class="missing-list">
-      <li class="missing-item"><strong>Mount Washburn hike</strong> (Yellowstone) — Dunraven Pass, 6 mi RT, best panoramic hike in the park with a fire tower at the summit. Needs its own half-day. The trailhead is on Dunraven Pass, which we already drive on the Lamar day (Day 4) — but that day is long enough already. Would mean swapping something out</li>
-      <li class="missing-item"><strong>Avalanche Peak</strong> (Yellowstone, East Entrance) — 4.5 mi, 2,100 ft gain, best summit views in the park. Far from the west-side base. Needs a dedicated day with an early start. Good option for older kids (12-14); skip if group doesn't want the commitment</li>
-      <li class="missing-item"><strong>Phelps Lake hike</strong> (Grand Teton) — 7-mi loop, fire lookout views, far less crowded than Jenny Lake area. Could substitute for Taggart Lake on Day 8</li>
-    </ul>
+  <div class="missing-card" id="notInPlan">
+    <div class="missing-header" onclick="toggle('notInPlan')">
+      <div class="missing-title">Not in the current plan</div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="missing-body">
+      <ul class="missing-list">
+        <li class="missing-item"><strong>Mount Washburn hike</strong> (Yellowstone) — Dunraven Pass, 6 mi RT, best panoramic hike in the park with a fire tower at the summit. Needs its own half-day. The trailhead is on Dunraven Pass, which we already drive on the Lamar day (Day 4) — but that day is long enough already. Would mean swapping something out</li>
+        <li class="missing-item"><strong>Avalanche Peak</strong> (Yellowstone, East Entrance) — 4.5 mi, 2,100 ft gain, best summit views in the park. Far from the west-side base. Needs a dedicated day with an early start. Good option for older kids (12-14); skip if group doesn't want the commitment</li>
+        <li class="missing-item"><strong>Phelps Lake hike</strong> (Grand Teton) — 7-mi loop, fire lookout views, far less crowded than Jenny Lake area. Could substitute for Taggart Lake on Day 8</li>
+      </ul>
+    </div>
   </div>
 
   <!-- REMINDERS -->
-  <div class="missing-card" style="margin-top:12px;border-color:rgba(193,125,43,0.3)">
-    <div class="missing-title" style="color:var(--amber)">Pre-trip checklist</div>
+  <div class="missing-card" id="preTrip" style="margin-top:12px;border-color:rgba(193,125,43,0.3)">
+    <div class="missing-header" onclick="toggle('preTrip')">
+      <div class="missing-title" style="color:var(--amber)">Pre-trip checklist</div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.25"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="missing-body">
     <ul class="missing-list">
+      <li class="missing-item"><strong>Install this page on your phone</strong> — save it to your home screen so the whole itinerary works with no signal in the parks. iPhone: tap Share ⬆︎ → Add to Home Screen. Android: tap ⋮ → Add to Home screen (or hit Install in the banner at the top)</li>
       <li class="missing-item"><strong>Standardize departures at 7:00 AM</strong> — for every park day except Lamar (Day 4, which needs its 5:00 AM start), leave by <strong>7:00 AM</strong>. It clears the entrance gate before the queue forms, and gets you into the popular lots before parking turns into a hunt. One habit, five easier mornings</li>
       <li class="missing-item"><strong>Lodging — all booked ✓</strong> Quality Inn Twin Falls (Jul 17) · VRBO Island Park (Jul 18–23) · Super 8 Driggs (Jul 23–25) · Days Inn Elko (Jul 25)</li>
       <li class="missing-item"><strong>America the Beautiful Pass</strong> — $80/vehicle, covers Yellowstone + Grand Teton + Craters of the Moon. Buy at nps.gov before departure. Pays for itself Day 2</li>
       <li class="missing-item"><strong>Geyser Times app</strong> — free, predicts eruption windows for Old Faithful and other geysers. Download before the trip</li>
       <li class="missing-item"><strong>Jenny Lake ferry</strong> — no advance reservation; buy tickets on arrival (Day 8). Go early in July, lines build fast</li>
       <li class="missing-item"><strong>Binoculars</strong> — mandatory for the Lamar Valley wildlife day (Day 4). One pair per family minimum</li>
-      <li class="missing-item"><strong>Teton Pass status</strong> — confirmed permanently repaired (June 2025). Verify wyoroad.info closer to departure. Needed for Day 8 Wyoming-side stops</li>
       <li class="missing-item"><strong>Layers + rain shell</strong> — Yellowstone mornings are cold even in July (30s–40s°F at dawn), afternoons warm. Lamar day starts pre-dawn</li>
     </ul>
+    </div>
   </div>
 
 </div>
 
 <div class="footer">
-  Yellowstone + Grand Teton · July 17–26, 2026 · Five families · All lodging confirmed
+  Built by KD
 </div>
 
 <script>
@@ -2025,8 +2075,14 @@ function toggle(id) {
   const card = document.getElementById(id);
   card.classList.toggle('open');
 }
-// All day cards open by default
-document.querySelectorAll('.day-card').forEach(card => card.classList.add('open'));
+// Expand-all / collapse-all toggle. If any card is closed, open them all; else close them all.
+function toggleAll(btn) {
+  const cards = document.querySelectorAll('.day-card');
+  const anyClosed = Array.from(cards).some(c => !c.classList.contains('open'));
+  cards.forEach(c => c.classList.toggle('open', anyClosed));
+  btn.textContent = anyClosed ? 'Collapse all' : 'Expand all';
+}
+// Day cards start collapsed for a clean view.
 </script>
 
 <script>

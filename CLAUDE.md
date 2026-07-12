@@ -22,14 +22,22 @@ The audience is four other families who did **not** attend any planning discussi
 
 ## Hard rules — violating these breaks the site
 
-### 1. Bump the cache version on every `index.html` change
+### 1. Bump the cache version once per push — to one above upstream
 
 `sw.js` line 2:
 ```js
-const CACHE = 'trip-v2';   // ← increment on EVERY index.html edit
+const CACHE = 'trip-v4';   // ← at push time, set to one above origin/main
 ```
 
-**If you skip this, phones that already installed the app keep serving the old cached copy and never see your edit.** This is the single easiest way to ship a change that appears to do nothing.
+The rule is **not** "bump on every edit." Bump the `trip-vN` version **only when you're about to push**, and set it to **exactly one above what's live upstream**:
+
+```bash
+git show origin/main:sw.js | grep 'CACHE ='   # see the deployed version, then set local = that + 1
+```
+
+A multi-edit local batch stays on a single version — don't ratchet v5→v6→v7 as you go. If the working tree is already one above upstream, leave it.
+
+**Why it matters:** the version is what forces already-installed phones to drop the old cached page and fetch your changes. Ship an `index.html` change with a stale (already-deployed) version and those phones keep serving the old copy — the change appears to do nothing.
 
 ### 2. Validate tag balance after every edit
 
@@ -47,7 +55,7 @@ print('li      ', len(re.findall(r'<li[ >]',h)), h.count('</li>'))
 ```
 All must match. (Note: naive `h.count('<li')` also matches `<link>` — use the regex above.)
 
-**Reference counts as of last known-good state:** 810 div, 10 iframe, 12 ul, 26 li, 1 style, 2 script.
+**Reference counts as of last known-good state:** 815 div, 10 iframe, 12 ul, 26 li, 1 style, 2 script.
 
 ### 3. Never estimate drive times or distances
 
@@ -141,10 +149,10 @@ Timeline items alternate: **stop → drive → stop → drive → …** Every st
 
 | Nights | Where |
 |---|---|
-| Jul 17 (1) | Quality Inn & Suites Twin Falls North, 1910 Fillmore St, Twin Falls ID |
+| Jul 17 (1) | Quality Inn & Suites Twin Falls North, 1910 Fillmore Street North, Twin Falls ID |
 | Jul 18–22 (5) | VRBO, 4778 Fir Road, Island Park ID — ~30 min to West entrance |
-| Jul 23–24 (2) | Super 8 by Wyndham Driggs, 1361 ID-33, Driggs ID |
-| Jul 25 (1) | Days Inn by Wyndham Elko, 1500 Idaho St, Elko NV |
+| Jul 23–24 (2) | Super 8 by Wyndham Driggs, 1361 North Highway 33, Driggs ID |
+| Jul 25 (1) | Days Inn by Wyndham Elko, 1500 Idaho Street, Elko NV |
 
 ---
 
