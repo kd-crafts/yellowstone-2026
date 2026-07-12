@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yellowstone + Teton · July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Installable app / offline -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#2D4A3E">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="YS + Teton">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Yellowstone &amp; Grand Teton family road trip, July 17-26 2026. Works offline.">
+<style>
+  :root {
+    --cream: #F7F3ED;
+    --cream-dark: #EDE7DC;
+    --stone: #C8BFB0;
+    --bark: #7A6652;
+    --forest: #2D4A3E;
+    --forest-light: #3D6354;
+    --amber: #C17D2B;
+    --amber-light: #F5E6CC;
+    --sky: #4A7898;
+    --sky-light: #D6E8F2;
+    --teton: #3D6354;
+    --teton-light: #D4E8E0;
+    --drive: #6B5E52;
+    --drive-light: #EDE7DC;
+    --trans: #5C4E7A;
+    --trans-light: #E8E4F2;
+    --text: #2C2420;
+    --text-muted: #7A6652;
+    --text-light: #A0927E;
+    --border: rgba(122,102,82,0.18);
+    --shadow: 0 2px 16px rgba(44,36,32,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--forest);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(26px, 6vw, 40px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+  }
+
+  /* LEGEND */
+  .legend-bar {
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .legend-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-light);
+    margin-right: 4px;
+  }
+  .legend-items { display: flex; flex-wrap: wrap; gap: 12px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-prio { margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap; }
+  .prio-item { font-size: 11px; color: var(--text-muted); }
+  .prio-item .star { color: var(--amber); }
+
+  /* MAIN LAYOUT */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* SECTION BREAK */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 16px;
+  }
+  .section-break span {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+  .section-break::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* DAY CARD */
+  .day-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .day-header {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .day-num-col {
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+  .day-num {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-light);
+    margin-bottom: 2px;
+  }
+  .day-date {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    text-align: center;
+  }
+  .day-dot-row {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 6px;
+  }
+
+  .day-title-col {
+    padding: 14px 16px 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .day-title-inner { flex: 1; min-width: 0; }
+  .day-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .day-stat {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 3px;
+  }
+  .day-stat strong { color: var(--text-muted); font-weight: 500; }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .b-drive { background: var(--drive-light); color: var(--drive); }
+  .b-yellow { background: var(--amber-light); color: var(--amber); }
+  .b-teton { background: var(--teton-light); color: var(--teton); }
+  .b-trans { background: var(--trans-light); color: var(--trans); }
+
+  .chevron {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--text-light);
+    transition: transform 0.2s ease;
+    margin-left: 6px;
+  }
+  .day-card.open .chevron { transform: rotate(180deg); }
+
+  /* DAY BODY */
+  .day-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .day-card.open .day-body { display: block; }
+
+  /* OPTION GRID */
+  .opt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 14px 16px 0;
+  }
+  @media (max-width: 480px) { .opt-grid { grid-template-columns: 1fr; } }
+  .opt-box {
+    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+  }
+  .opt-box.opt-a { background: var(--teton-light); border-color: rgba(61,99,84,0.2); }
+  .opt-box.opt-b { background: var(--sky-light); border-color: rgba(74,120,152,0.2); }
+  .opt-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: 5px;
+  }
+  .opt-a .opt-label { color: var(--teton); }
+  .opt-b .opt-label { color: var(--sky); }
+  .opt-box p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .opt-box .note { font-size: 11px; color: var(--text-light); margin-top: 5px; font-style: italic; }
+
+  /* CRATERS NOTE */
+  .craters-box {
+    margin: 14px 16px 0;
+    background: var(--amber-light);
+    border: 1px solid rgba(193,125,43,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .craters-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--amber);
+    margin-bottom: 5px;
+  }
+  .craters-body { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+  /* STOPS */
+  .stops-section { padding: 14px 16px; }
+  .sublabel {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--text-light);
+    margin: 14px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sublabel::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stops { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .stop-icon {
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
+    margin-top: 2px;
+    font-size: 11px;
+    line-height: 1;
+  }
+  .stop-icon.must { color: var(--amber); font-size: 12px; }
+  .stop-icon.normal { color: var(--stone); font-size: 16px; line-height: 1; }
+  .stop-icon.opt { color: var(--stone); }
+  .stop-icon.tip { color: var(--text-light); }
+  .stop-text { font-size: 12.5px; line-height: 1.55; flex: 1; }
+  .stop-text.must { color: var(--text); }
+  .stop-text.normal { color: var(--text-muted); }
+  .stop-text.opt { color: var(--text-light); }
+  .stop-text.tip { color: var(--text-light); font-style: italic; }
+
+  /* MAP BLOCK (link + embed) */
+  .map-block { margin: 14px 16px 0; }
+  .map-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: var(--forest);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 9px;
+    padding: 11px 14px;
+    margin-bottom: 10px;
+  }
+  .map-cta:active { background: var(--forest-light); }
+  .map-embed {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--cream-dark);
+    line-height: 0;
+  }
+  .map-embed iframe { width: 100%; height: 300px; border: 0; display: block; }
+  .geo-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--cream-dark);
+    border-left: 3px solid var(--forest-light);
+    border-radius: 7px;
+    padding: 10px 13px;
+    margin: 14px 16px 0;
+    line-height: 1.5;
+  }
+  .geo-note strong { color: var(--text); font-weight: 600; }
+  .route-caption {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 8px;
+    line-height: 1.45;
+    text-align: center;
+  }
+  .timeline {
+    margin: 14px 16px 0;
+    position: relative;
+  }
+  .tl-head {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .tl-item { display: grid; grid-template-columns: 54px 1fr; gap: 10px; }
+  .tl-time {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: right;
+    padding-top: 1px;
+    white-space: nowrap;
+  }
+  .tl-body { position: relative; padding-left: 20px; padding-bottom: 14px; }
+  .tl-body::before {
+    content: '';
+    position: absolute;
+    left: 4px; top: 4px; bottom: -4px;
+    width: 2px;
+    background: var(--stone);
+  }
+  .tl-item:last-child .tl-body::before { display: none; }
+  .tl-dot {
+    position: absolute;
+    left: 0; top: 3px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: 2px solid var(--cream);
+  }
+  .tl-dot.drive { background: var(--stone); width: 8px; height: 8px; left: 1px; top: 4px; }
+  .tl-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .tl-dur { font-size: 11px; color: var(--amber); font-weight: 500; }
+  .tl-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.45; }
+  .tl-drive { font-size: 11px; color: var(--text-light); font-style: italic; }
+
+  /* SLEEP */
+  .sleep-row {
+    padding: 12px 16px 14px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .sleep-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .sleep-info { flex: 1; min-width: 0; }
+  .sleep-name { font-size: 12.5px; font-weight: 500; color: var(--text); }
+  .sleep-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; line-height: 1.45; }
+  .sleep-nights { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+  .sleep-dir {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--forest-light);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .sleep-dir:active { background: var(--cream-dark); }
+  @media (max-width: 480px) {
+    .sleep-row { flex-wrap: wrap; }
+    .sleep-dir { margin-left: 23px; }
+  }
+
+  /* MISSING */
+  .missing-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-top: 24px;
+    box-shadow: var(--shadow);
+  }
+  .missing-title {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .missing-list { display: flex; flex-direction: column; gap: 8px; }
+  .missing-item { font-size: 12.5px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.55; }
+  .missing-item::before { content: '—'; position: absolute; left: 0; color: var(--stone); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 11px;
+    color: var(--text-light);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* COLORS */
+  .c-drive { background: #9C8C7C; }
+  .c-yellow { background: var(--amber); }
+  .c-teton { background: var(--teton); }
+  .c-trans { background: var(--trans); }
+
+  /* OFFLINE / INSTALL BANNER */
+  .offline-banner {
+    background: var(--forest);
+    color: #F7F3ED;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .offline-banner strong { color: #F0D9A8; font-weight: 500; }
+  .ob-icon { font-size: 20px; flex-shrink: 0; }
+  .ob-close {
+    margin-left: auto; flex-shrink: 0; background: rgba(247,243,237,0.14);
+    border: 0; color: #F7F3ED; border-radius: 6px; padding: 7px 11px;
+    font: inherit; font-size: 12px; cursor: pointer; min-height: 34px;
+  }
+  #installBtn {
+    background: var(--amber); color: #fff; border: 0; border-radius: 6px;
+    padding: 8px 13px; font: inherit; font-size: 12.5px; font-weight: 500;
+    cursor: pointer; flex-shrink: 0; min-height: 38px; display: none;
+  }
+  @media (max-width: 640px) {
+    .offline-banner { font-size: 13px; padding: 13px 14px; flex-wrap: wrap; }
+    .ob-close { padding: 6px 10px; }
+  }
+
+  /* ═══════ MOBILE (primary use) ═══════ */
+  @media (max-width: 640px) {
+    body { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    .container { padding: 0 12px 40px; }
+
+    .hero { padding: 28px 18px 24px; }
+    .hero h1 { font-size: 27px; line-height: 1.15; }
+    .hero-eyebrow { font-size: 12px; }
+    .hero-sub { font-size: 13.5px; line-height: 1.5; }
+
+    .legend-bar { flex-direction: column; align-items: flex-start; gap: 9px; padding: 14px; }
+    .legend-items, .legend-prio { flex-wrap: wrap; gap: 12px; margin-left: 0; width: 100%; justify-content: flex-start; }
+    .legend-label { margin-right: 0; }
+    .leg, .prio-item { font-size: 13px; }
+
+    .section-break span { font-size: 12px; }
+
+    /* Day header: stack so titles aren't crushed */
+    .day-header { padding: 14px; gap: 12px; align-items: flex-start; }
+    .day-num-col { min-width: 46px; }
+    .day-num { font-size: 12px; }
+    .day-date { font-size: 11px; }
+    .day-title { font-size: 16px; line-height: 1.3; }
+    .day-stat { font-size: 12.5px; line-height: 1.5; margin-top: 4px; }
+    .badge { font-size: 10px; padding: 3px 7px; }
+    .chevron { width: 15px; height: 15px; }
+
+    /* Timeline: the core reading experience */
+    .timeline { margin: 14px 12px 0; }
+    .tl-head { font-size: 11.5px; }
+    .tl-item { grid-template-columns: 50px 1fr; gap: 8px; }
+    .tl-time { font-size: 12px; }
+    .tl-body { padding-left: 18px; padding-bottom: 16px; }
+    .tl-name { font-size: 15px; line-height: 1.35; }
+    .tl-dur { font-size: 12.5px; display: inline-block; }
+    .tl-desc { font-size: 14px; line-height: 1.6; margin-top: 4px; }
+    .tl-drive { font-size: 12.5px; line-height: 1.5; display: inline-block; }
+
+    /* Stops */
+    .stops-section { padding: 14px 12px; }
+    .sublabel { font-size: 11.5px; }
+    .stop { gap: 8px; margin-bottom: 12px; }
+    .stop-text { font-size: 14px; line-height: 1.6; }
+    .stop-icon { font-size: 13px; }
+
+    /* Boxes */
+    .craters-box, .geo-note { margin-left: 12px; margin-right: 12px; padding: 13px; }
+    .craters-title { font-size: 14px; }
+    .craters-body { font-size: 13.5px; line-height: 1.65; }
+    .geo-note { font-size: 13.5px; line-height: 1.6; }
+
+    /* Map block */
+    .map-block { margin: 14px 12px 0; }
+    .map-cta { font-size: 15px; padding: 14px; }
+    .map-embed iframe { height: 240px; }
+    .route-caption { font-size: 12px; line-height: 1.55; }
+
+    /* Sleep row */
+    .sleep-row { padding: 14px 12px; }
+    .sleep-name { font-size: 14px; }
+    .sleep-meta { font-size: 12.5px; }
+    .sleep-nights { font-size: 11px; }
+    .sleep-dir { font-size: 12.5px; padding: 8px 12px; margin-left: 0; }
+
+    /* Missing / checklist */
+    .missing-card { padding: 16px 14px; }
+    .missing-title { font-size: 14px; }
+    .missing-item { font-size: 13.5px; line-height: 1.65; }
+  }
+
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 24px; }
+    .tl-item { grid-template-columns: 44px 1fr; gap: 6px; }
+    .tl-time { font-size: 11.5px; }
+    .day-title { font-size: 15px; }
+  }
+
+  /* Tap targets: never smaller than comfortable */
+  .map-cta, .sleep-dir, .day-header { min-height: 44px; }
+  .day-header { cursor: pointer; -webkit-tap-highlight-color: rgba(45,74,62,0.06); }
+</style>
+</head>
+<body>
+
+<div class="offline-banner" id="offlineBanner">
+  <span class="ob-icon">📶</span>
+  <span><strong>There's almost no cell signal in the parks.</strong> Save this to your phone before you leave — it works fully offline.
+  <span id="howTo"></span></span>
+  <button id="installBtn">Install</button>
+  <button class="ob-close" onclick="document.getElementById('offlineBanner').style.display='none'">Got it</button>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">July 17 – 26, 2026</div>
+  <h1>Yellowstone &amp; Grand Teton</h1>
+  <div class="hero-sub">Home → Twin Falls → Yellowstone → Grand Teton → Elko → Home</div>
+</div>
+
+<div class="legend-bar">
+  <span class="legend-label">Segment</span>
+  <div class="legend-items">
+    <div class="leg"><div class="leg-dot" style="background:#9C8C7C"></div> Drive</div>
+    <div class="leg"><div class="leg-dot" style="background:#C17D2B"></div> Yellowstone</div>
+    <div class="leg"><div class="leg-dot" style="background:#5C4E7A"></div> Transition</div>
+    <div class="leg"><div class="leg-dot" style="background:#3D6354"></div> Grand Teton</div>
+  </div>
+  <div class="legend-prio">
+    <span class="prio-item"><span class="star">★</span> must do</span>
+    <span class="prio-item">· standard</span>
+    <span class="prio-item">○ optional</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ── DRIVE NORTH ── -->
+  <div class="section-break"><span>Getting there — Idaho route</span></div>
+
+  <!-- DAY 1 -->
+  <div class="day-card open" id="d1">
+    <div class="day-header" onclick="toggle('d1')">
+      <div class="day-num-col">
+        <div class="day-num">Day 1</div>
+        <div class="day-date">Jul 17</div>
+        <div class="day-dot-row c-drive"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Santa Clara → Shoshone Falls → Twin Falls</div>
+          <div class="day-stat"><strong>~705 mi · ~11 hrs driving</strong> · +1.5 hrs breaks · 4:30a → ~6:00p (MT)</div></div>
+        <span class="badge b-drive">Drive</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=3681+Peacock+Ct%2C+Santa+Clara%2C+CA&destination=Shoshone+Falls%2C+Twin+Falls%2C+ID" target="_blank" rel="noopener">🗺️ Open Day 1 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=3681+Peacock+Ct,+Santa+Clara,+CA&daddr=Shoshone+Falls,+Twin+Falls,+ID&output=embed"></iframe>
+        </div>
+        <div class="route-caption">I-80 east across Nevada, then US-93 north into Idaho. One long push — the payoff is arriving at Shoshone Falls with evening light to spare.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">4:30a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart home · Santa Clara</div>
+            <div class="tl-desc">Big first day. The early start beats Bay Area traffic and gets you east with daylight to spare</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~3.5 hrs · I-80 east to Nevada</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~8:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Reno, NV <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-desc">Breakfast + fuel. <strong>Costco Reno</strong> (2200 Harvard Wy, just off I-80/I-580) — the gas station opens early, but note the <strong>warehouse itself doesn't open until 10am</strong>, so at this hour it's fuel only</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~4 hrs · I-80 east across Nevada</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~12:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Wells, NV <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Lunch + fuel. Last reliable stop before US-93 turns north into Idaho (still Pacific time here)</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~3 hrs · US-93 north · clock jumps +1 hr crossing into Idaho (Mountain Time)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~6:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Shoshone Falls, Twin Falls <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">"Niagara of the West" — a 212-ft waterfall on the Snake River, taller than Niagara and wider than a thousand feet across. Short walk to the overlook, entry ~$5/car. July light lasts to ~9pm, so no rush</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ 3 mi to the hotel</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">evening</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Dinner + check in · Quality Inn</div>
+            <div class="tl-desc">Times are all Mountain now. Total: ~11 hrs driving + ~1.5 hrs breaks</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt">Perrine Bridge (5 min from the falls): BASE jumpers launch from the 486-ft bridge year-round. Free to watch from the rim, ~20 min if there's light and energy left</span></li>
+        </ul>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">Quality Inn &amp; Suites Twin Falls North</div>
+          <div class="sleep-meta">1910 Fillmore St, Twin Falls, ID 83301 · +1 208-825-3670</div>
+          <div class="sleep-nights">1 night · Jul 17</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Quality+Inn+%26+Suites+Twin+Falls+North%2C+1910+Fillmore+St%2C+Twin+Falls%2C+ID+83301" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card open" id="d2">
+    <div class="day-header" onclick="toggle('d2')">
+      <div class="day-num-col">
+        <div class="day-num">Day 2</div>
+        <div class="day-date">Jul 18</div>
+        <div class="day-dot-row c-drive"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Shoshone Falls → Craters → Costco → Island Park VRBO</div>
+          <div class="day-stat"><strong>272 mi · 4h 38m driving</strong> · +3.5 hrs stops · 9:00a → ~5:00p</div></div>
+        <span class="badge b-drive">Drive + park</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Shoshone+Falls%2C+Twin+Falls%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Craters+of+the+Moon+National+Monument%7CCostco+Idaho+Falls" target="_blank" rel="noopener">🗺️ Open Day 2 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Shoshone+Falls,+Twin+Falls,+ID&daddr=Craters+of+the+Moon+National+Monument+to:Costco,+Idaho+Falls,+ID+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
+        </div>
+        <div class="route-caption">US-93 and US-20 northeast across the Snake River plain. Total driving today: 272 mi · 4h 38m (Google).</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">9:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart hotel</div>
+            <div class="tl-desc">After breakfast. Drive straight to Craters — no stops on the way there</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h30m · US-93/US-26 to Craters</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">10:30a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Craters of the Moon <span class="tl-dur">· ~2 hrs</span></div>
+            <div class="tl-desc">A black volcanic landscape of hardened lava flows, cinder cones, and caves — so otherworldly that NASA trained astronauts here. See the "what to do" note below</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h30m · to Idaho Falls</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Costco, Idaho Falls <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Fuel + stock up. Last big grocery before Island Park — load the VRBO here (2495 E Lincoln Rd)</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ lunch along the way</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:45p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Lunch <span class="tl-dur">· ~40 min</span></div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h30m · Idaho Falls → Island Park</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~5:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Island Park VRBO</div>
+            <div class="tl-desc">Check in, drop bags, unload supplies. Optional evening run into the park for Old Faithful if the group has energy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="craters-box">
+        <div class="craters-title">Craters of the Moon — what to do</div>
+        <div class="craters-body">
+          Lava tubes you can walk inside, dramatic volcanic landscape, and NASA astronaut training grounds — nothing else in the US looks like this. Entry $25/vehicle (free with America the Beautiful Pass). Plan <strong>~2 hrs</strong>.<br><br>
+          <strong>Do:</strong> the 7-mile scenic loop drive · Inferno Cone (short steep climb, panoramic crater views from the top) · at least one lava tube walk — Indian Tunnel is the easiest and most impressive. Headlamps useful for the tubes (rentable at the visitor center). Grab the free cave permit at the visitor center first.
+        </div>
+      </div>
+            <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">VRBO — Island Park (Yellowstone base)</div>
+          <div class="sleep-meta">4778 Fir Road, Island Park, ID 83429 · ~30 min to West entrance</div>
+          <div class="sleep-nights">Night 1 of 5 · Jul 18</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID+83429" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── YELLOWSTONE ── -->
+  <div class="section-break"><span>Yellowstone — 5 park days</span></div>
+  <p style="font-size:12px;color:var(--text-light);margin-bottom:14px;padding:0 4px;">Ordered to sandwich the long day: Geyser (short) → <strong>Lamar (long, 5am)</strong> → Norris + Mammoth → Canyon (full). No two heavy days back-to-back. Must-dos marked ★.</p>
+  <p style="font-size:11.5px;color:var(--text-light);margin:-8px 4px 14px;padding:0 4px;">⏱ Times are realistic moving estimates that include parking and short walks, but Yellowstone in July is unpredictable — a single bison jam can add 15–45 min. Treat each day's finish time as "earliest likely," and don't over-schedule the evenings.</p>
+
+  <!-- DAY 3 -->
+  <div class="day-card" id="d3">
+    <div class="day-header" onclick="toggle('d3')">
+      <div class="day-num-col">
+        <div class="day-num">Day 3</div>
+        <div class="day-date">Jul 19</div>
+        <div class="day-dot-row c-yellow"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Southwest Lower Loop — Geyser Country</div>
+          <div class="day-stat"><strong>~95 mi · ~3 hrs driving</strong> · 7:00a → ~4:30p · lightest driving, most walking</div></div>
+        <span class="badge b-yellow">Yellowstone</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="geo-note">🧭 <span><strong>Where in the park:</strong> The southwest corner, on the <strong>Lower Loop</strong> — the closest zone to the West entrance and the densest cluster of geysers and hot springs anywhere in the park.</span></div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Grand+Prismatic+Spring%2C+Yellowstone%7COld+Faithful%2C+Yellowstone%7CKepler+Cascades%7CFountain+Paint+Pot%2C+Yellowstone%7CFirehole+Canyon+Drive%2C+Yellowstone" target="_blank" rel="noopener">🗺️ Open Day 3 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Grand+Prismatic+Spring,+Yellowstone+to:Old+Faithful,+Yellowstone+to:Fountain+Paint+Pot,+Yellowstone+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
+        </div>
+        <div class="route-caption">Southwest leg of the figure-8: West entrance → Madison → south to Old Faithful, then back the same way. Live map needs signal; if you're offline, use the timeline below.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart VRBO</div>
+            <div class="tl-desc">Early start beats crowds and gets sharp morning light at Grand Prismatic</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~45 min · VRBO → West entrance → Grand Prismatic (25 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Grand Prismatic Overlook <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-desc">Flat 1.2-mi round-trip walk (Fairy Falls trail) to the hillside viewpoint — the only spot you see the whole rainbow spring from above. The parking lot is small and fills fast, so an early arrival matters here more than anywhere on this day</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · 1 mi north</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">8:50a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Midway Geyser Basin <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Grand Prismatic from ground level — up close, huge scale. Boardwalk loop. Big lot but busy; a few minutes to park by mid-morning</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · south</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">9:50a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Black Sand Basin <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-desc">Small boardwalk of vivid pools and a geyser. This is our stand-in for Biscuit Basin, which is closed — see the note at the bottom of this day</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · 1 mi south</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">10:25a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Old Faithful + Upper Geyser Basin + the Inn <span class="tl-dur">· ~2.5 hrs (incl. lunch)</span></div>
+            <div class="tl-desc">Turnaround point. Time an eruption (Geyser Times app), walk the boardwalk loop past Grand Geyser and Chromatic Pool, and step inside <strong>Old Faithful Inn</strong> — a seven-story log lobby built in 1904, worth 20 min on its own. Lunch here. The lot is huge, so the eruption schedule sets your pace, not parking</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~10 min · 2 mi south</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">1:05p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Kepler Cascades <span class="tl-dur">· ~10 min</span></div>
+            <div class="tl-desc">A 150-ft cascade dropping through a narrow rock gorge, seen from a viewing platform a few steps from the car. No walking, no cost — you drive right past it</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~25 min · back north to the Lower Geyser Basin</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">1:40p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Fountain Paint Pot <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">The best short boardwalk in the park — a half-mile flat loop that hits <strong>all four kinds of thermal feature in one walk</strong>: a geyser, a hot spring, a bubbling mud pot, and a hissing steam vent. Easy, consistently one of the highest-rated stops in Yellowstone, and you drive right past it. Don't skip this one</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · next entrance north</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:30p</div>
+          <div class="tl-body"><span class="tl-dot" style="background:var(--stone)"></span>
+            <div class="tl-name">Firehole Lake Drive <span class="tl-dur" style="color:#A03C32">· SKIP BY DEFAULT</span></div>
+            <div class="tl-desc"><strong style="color:#A03C32">Only do this with a confirmed eruption prediction that lines up with our arrival. Otherwise drive past it.</strong><br><br>See the note below for why</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · north toward Madison</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">3:20p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Firehole Canyon Drive <span class="tl-dur">· ~30–60 min</span></div>
+            <div class="tl-desc">1-way scenic loop: Firehole Falls plus the park's only legal swimming hole (~3–5 ft deep, mild current, no lifeguard). Swim is optional — the <em>josh</em> call</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~60 min · Firehole → West entrance → VRBO (~38 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~4:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Back at VRBO</div>
+            <div class="tl-desc">Evening free — fire pit and game room at the house. Skipping Firehole Lake Drive (the default) gets you back closer to <strong>~3:45p</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon tip">↳</span><span class="stop-text tip">Grand Prismatic first, early: as the day warms, steam rises off the spring and hides the colors. Morning = sharp</span></li>
+          <li class="stop"><span class="stop-icon must">★</span><span class="stop-text must">Grand Prismatic is the largest hot spring in the US — a football-field-sized pool, deep-blue center ringed by orange and yellow bands (from heat-loving bacteria). From the ground boardwalk you can't see the colors or scale; the overlook is the only spot you see the whole thing</span></li>
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt">Morning Glory Pool — a deep blue-green pool at the far end of the Upper Geyser Basin boardwalk, ~1.5 mi out from Old Faithful. Only worth it if the group wants the longer walk</span></li>
+        </ul>
+      </div>
+
+      <div class="craters-box" style="border-color:rgba(160,60,50,0.28);background:rgba(160,60,50,0.05)">
+        <div class="craters-title" style="color:#A03C32">⚠ Closed — don't plan around these</div>
+        <div class="craters-body">
+          <strong>Biscuit Basin is closed.</strong> A hydrothermal explosion on July 23, 2024 destroyed the boardwalk and parking lot. Officials fenced it off "until further notice" and it has stayed closed since — assume it's still closed for our trip.<br><br>
+          Because the closure covers the whole basin <em>and</em> its parking lot, <strong>these are all off the table too</strong> — they're either features on the Biscuit Basin boardwalk or trails that start from its lot:<br><br>
+          • <strong>Sapphire Pool</strong> — the famous deep-blue pool (the explosion was centered right here)<br>
+          • <strong>Jewel Geyser</strong> — the small geyser that erupts every 7–10 minutes<br>
+          • <strong>Black Diamond Pool, Black Opal Pool, Mustard Spring, Wall Pool</strong><br>
+          • <strong>Mystic Falls</strong> — the 70-ft falls hike; its trailhead sits inside the closed lot<br><br>
+          <strong>What we do instead:</strong> Black Sand Basin and Fountain Paint Pot (both on today's route) cover very similar ground. Worth a quick check of nps.gov before we leave in case it reopens.
+        </div>
+      </div>
+
+      <div class="craters-box" style="border-color:rgba(160,60,50,0.28);background:rgba(160,60,50,0.05)">
+        <div class="craters-title" style="color:#A03C32">⚠ Firehole Lake Drive — the time trap. Skip unless the geyser is predicted</div>
+        <div class="craters-body">
+          <strong>The draw:</strong> Great Fountain Geyser shoots water <strong>100–200 ft in the air</strong> and is genuinely spectacular.<br><br>
+          <strong>The problem:</strong> it erupts only <strong>once every 9–15 hours</strong>, and even the official prediction carries a <strong>two-hour window</strong>. Show up at the wrong moment and you're looking at a still pool of water.<br><br>
+          <strong>The trap:</strong> people decide to "wait it out" — and burn <strong>90 minutes of prime park time</strong> staring at nothing. The rest of the loop (White Dome Geyser, Firehole Lake) is visually underwhelming, so there's nothing to fall back on. Meanwhile we're doing Fountain Paint Pot and Grand Prismatic the same day — dense, high-action boardwalks that deliver every single time.<br><br>
+          <strong>The rule:</strong> at the Old Faithful visitor center in the morning, check the Great Fountain prediction. <strong>If it doesn't line up with a ~2:30pm arrival, drive straight past and go home early.</strong> Do not wait for it. There is no version of this where waiting is the right call.
+        </div>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">VRBO — Island Park (Yellowstone base)</div>
+          <div class="sleep-meta">4778 Fir Road, Island Park, ID 83429 · ~30 min to West entrance</div>
+          <div class="sleep-nights">Night 2 of 5 · Jul 19</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID+83429" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 — LAMAR (long day) -->
+  <div class="day-card" id="d4">
+    <div class="day-header" onclick="toggle('d4')">
+      <div class="day-num-col">
+        <div class="day-num">Day 4</div>
+        <div class="day-date">Jul 20</div>
+        <div class="day-dot-row c-yellow"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Lamar Valley — wildlife day <span style="font-size:11px;color:var(--amber);font-weight:600;">LONG</span></div>
+          <div class="day-stat"><strong>~165 mi · ~5 hrs driving</strong> · 5:00a → ~2:45p · the one early start</div></div>
+        <span class="badge b-yellow">Yellowstone</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="geo-note">🧭 <span><strong>Where in the park:</strong> The far northeast, out past Tower on the <strong>Upper Loop</strong> — a wide open valley that's the best wildlife-watching in the park. It's the farthest corner from home base, which is why it's the long day.</span></div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Canyon+Village%2C+Yellowstone%7CLamar+Valley%2C+Yellowstone%7CTower+Fall%2C+Yellowstone%7CCalcite+Springs+Overlook%2C+Yellowstone" target="_blank" rel="noopener">🗺️ Open Day 4 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Canyon+Village,+Yellowstone+to:Lamar+Valley,+Yellowstone+to:Tower+Fall,+Yellowstone&output=embed"></iframe>
+        </div>
+        <div class="route-caption">Northeast corner of the park. Out via Norris → Canyon → Tower (over Dunraven Pass), then back the same way — keeps the Norris→Mammoth road free for Day 5.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">5:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart VRBO</div>
+            <div class="tl-desc">The one early start of the trip. Lamar's animals are most active in the first hours of daylight, which is why the day begins early</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~2h15m · West → Norris → Canyon → Tower → Lamar (~74 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:15a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Lamar Valley <span class="tl-dur">· ~3 hrs</span></div>
+            <div class="tl-desc">"America's Serengeti" — bison herds, pronghorn, often wolves and grizzlies. Scan slowly from the pullouts; don't just drive through. Binoculars essential. This is the payoff for the early start</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~30 min · Lamar → Tower Fall (~18 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">10:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Tower Fall <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-desc">132-ft waterfall dropping into a narrow canyon, framed by rock spires. Short walk from the parking area to the overlook</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · 1 mi south</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">11:20a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Calcite Springs Overlook <span class="tl-dur">· ~15 min</span></div>
+            <div class="tl-desc">A short boardwalk to a dramatic view straight down into the Yellowstone River canyon — yellow sulphur deposits streak the cliffs and steam vents hiss out of the rock walls below. Basalt columns line the far side. Right beside Tower Fall, so it's a free add</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · back toward Tower Junction</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">11:40a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Yellowstone River Picnic Area — lunch <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">A proper picnic spot rather than a roadside pullout, set above the river near Tower Junction. A short trail runs along the canyon rim from here — <strong>bighorn sheep are commonly seen on the cliffs</strong>, and it's a good leg-stretch before the long drive back</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~2h15m · Tower → Canyon → Norris → West → VRBO (~74 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~2:45p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Back at VRBO</div>
+            <div class="tl-desc">A long day, but you're home by mid-afternoon and the evening stays free</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon tip">↳</span><span class="stop-text tip">Petrified Tree (near Tower) is an optional 5-min roadside add if the group has energy</span></li>
+        </ul>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">VRBO — Island Park (Yellowstone base)</div>
+          <div class="sleep-meta">4778 Fir Road, Island Park, ID 83429 · ~30 min to West entrance</div>
+          <div class="sleep-nights">Night 3 of 5 · Jul 20</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID+83429" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 — NORRIS + MAMMOTH (recovery / medium) -->
+  <div class="day-card" id="d5">
+    <div class="day-header" onclick="toggle('d5')">
+      <div class="day-num-col">
+        <div class="day-num">Day 5</div>
+        <div class="day-date">Jul 21</div>
+        <div class="day-dot-row c-yellow"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Norris + Mammoth Hot Springs</div>
+          <div class="day-stat"><strong>~130 mi · ~4 hrs driving</strong> · 7:30a → ~4:15p</div></div>
+        <span class="badge b-yellow">Yellowstone</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="geo-note">🧭 <span><strong>Where in the park:</strong> The north side of the <strong>Upper Loop</strong> — Norris sits at the middle of the figure-8, and Mammoth is up near the north gate at Gardiner, Montana.</span></div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Gibbon+Falls%2C+Yellowstone%7CNorris+Geyser+Basin%2C+Yellowstone%7CMammoth+Hot+Springs%2C+Yellowstone%7CRoosevelt+Arch%2C+Gardiner%2C+MT" target="_blank" rel="noopener">🗺️ Open Day 5 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Artist+Paint+Pots,+Yellowstone+to:Norris+Geyser+Basin,+Yellowstone+to:Mammoth+Hot+Springs,+Yellowstone+to:Roosevelt+Arch,+Gardiner,+MT&output=embed"></iframe>
+        </div>
+        <div class="route-caption">Straight up the west side to Norris, then north through Golden Gate canyon to Mammoth. All four thermal feature types covered by end of today — Mammoth's travertine terraces are the one kind you see nowhere else.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:30a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart VRBO</div>
+            <div class="tl-desc">A relaxed start</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1 hr · West entrance → Madison, then onto the Madison–Norris road</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~8:30a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Gibbon Falls <span class="tl-dur">· ~5 min</span></div>
+            <div class="tl-desc">An 84-ft waterfall spilling over the rim of the old volcanic caldera. Paved roadside pull-off and overlook — quick photo stop</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~8:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Beryl Spring <span class="tl-dur">· ~5 min</span></div>
+            <div class="tl-desc">A violently boiling hot spring hissing and steaming right beside the road — one of the hottest in the park. No walking, just pull over and look</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~8:55a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Artist Paint Pots <span class="tl-dur">· ~40 min</span></div>
+            <div class="tl-desc">Mud pots — bubbling, plopping pools of colored clay. Easy 1-mi round-trip boardwalk. The "mud" category of Yellowstone thermal features; kids love the sounds</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~10 min · 4 mi north to Norris</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~9:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Norris Geyser Basin <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-desc">Hottest, most acidic basin in the park. Porcelain Basin (neon mineral flats) + Back Basin (Steamboat, the world's tallest active geyser). Boardwalk loops. Sizable lot but it fills midday — arriving before ~10am keeps parking quick</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~40 min · Norris → Mammoth (21 mi, through Golden Gate canyon)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~11:50a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Mammoth Hot Springs + lunch <span class="tl-dur">· ~2 hrs</span></div>
+            <div class="tl-desc">Tiered white travertine terraces — like a frozen waterfall of limestone, unlike anything else in the park. Lower Terraces (boardwalks) + Upper Terrace Drive. Elk often lounge on the lawns at Fort Yellowstone. Lunch here. Parking is spread across a few lots (lower boardwalk + Upper Terrace Drive), so allow a few minutes to reposition between them</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~10 min · 5 mi north to Gardiner</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~2:10p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Roosevelt Arch, Gardiner <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-desc">The original grand north entrance — 50-ft stone arch inscribed "For the benefit and enjoyment of the people." Classic photo stop</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h45m · Mammoth → Norris → West → VRBO (~70 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~4:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Back at VRBO</div>
+            <div class="tl-desc">Home by mid-afternoon</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon tip">↳</span><span class="stop-text tip">Yellowstone has four kinds of thermal feature — geysers, hot springs, mud pots, and the travertine terraces here at Mammoth. The terraces are the one kind you see nowhere else in the park</span></li>
+        </ul>
+      </div>
+      <div class="craters-box" style="border-color:rgba(160,60,50,0.28);background:rgba(160,60,50,0.05)">
+        <div class="craters-title" style="color:#A03C32">⚠ Boiling River is closed — don't plan on it</div>
+        <div class="craters-body">
+          If anyone in the group has heard about <strong>Boiling River</strong> — the famous soaking spot near Mammoth where a hot spring poured into the cold Gardner River — <strong>it no longer exists as a swimming area.</strong><br><br>
+          The June 2022 floods reshaped the riverbed entirely. The walkway was swept away, the banks eroded, the soaking pools are gone, and the geothermal vents shifted so the scalding water no longer mixes with the cold river. The access road was destroyed too — the old site now sits about 3 miles from any road, with no safe or legal way in. <strong>As of 2026 there is no plan to reopen it.</strong><br><br>
+          <strong>The only legal swim in Yellowstone is the Firehole Swimming Area</strong> — that's on Day 3 (Firehole Canyon Drive). It's river water, so it's cool rather than warm, but it's the real thing.
+        </div>
+      </div>
+
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">VRBO — Island Park (Yellowstone base)</div>
+          <div class="sleep-meta">4778 Fir Road, Island Park, ID 83429 · ~30 min to West entrance</div>
+          <div class="sleep-nights">Night 4 of 5 · Jul 21</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID+83429" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 — CANYON (full day) -->
+  <div class="day-card" id="d6">
+    <div class="day-header" onclick="toggle('d6')">
+      <div class="day-num-col">
+        <div class="day-num">Day 6</div>
+        <div class="day-date">Jul 22</div>
+        <div class="day-dot-row c-yellow"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Grand Canyon of Yellowstone <span style="font-size:11px;color:var(--amber);font-weight:600;">FULL</span></div>
+          <div class="day-stat"><strong>~150 mi · ~5.5 hrs driving</strong> · 7:00a → ~6:15p · Hayden optional (saves ~2h45m)</div></div>
+        <span class="badge b-yellow">Yellowstone</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="geo-note">🧭 <span><strong>Where in the park:</strong> The east-central park, where the Upper and Lower Loops meet — the <strong>Grand Canyon of the Yellowstone</strong>, a deep river gorge with two big waterfalls, plus open wildlife flats just to the south.</span></div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Brink+of+the+Lower+Falls%2C+Yellowstone%7CArtist+Point%2C+Yellowstone%7CMud+Volcano%2C+Yellowstone%7CHayden+Valley%2C+Yellowstone" target="_blank" rel="noopener">🗺️ Open Day 6 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Canyon+Village,+Yellowstone+to:Artist+Point,+Yellowstone+to:Mud+Volcano,+Yellowstone+to:Hayden+Valley,+Yellowstone&output=embed"></iframe>
+        </div>
+        <div class="route-caption">East side of the figure-8. West → Norris → Canyon, then work both rims of the canyon plus Hayden Valley just south. The most viewpoints of any day — pace it out.</div>
+      </div>
+
+      <!-- CANYON PRIMER -->
+      <div class="craters-box">
+        <div class="craters-title">First, how the canyon works — so the viewpoints make sense</div>
+        <div class="craters-body">
+          "Yellowstone Falls" is really <strong>two waterfalls</strong> on the Yellowstone River: the <strong>Upper Falls</strong> (109 ft) and, just downstream, the big famous <strong>Lower Falls</strong> (308 ft — more than twice the height of Niagara). Both sit at the head of the <strong>Grand Canyon of the Yellowstone</strong>, a 1,000-ft-deep gorge of orange, yellow, and pink rock.<br><br>
+          You see them from about ten named overlooks split across <strong>two rims</strong>, each its own road off the Grand Loop:<br>
+          • <strong>North Rim Drive</strong> (one-way loop) — Brink of the Lower Falls, Lookout Point, Grand View, Inspiration Point<br>
+          • <strong>South Rim Drive</strong> (out-and-back) — Upper Falls View, Artist Point<br><br>
+          The key thing: <strong>Artist Point (South Rim) and Lookout Point (North Rim) both look at the same Lower Falls — from opposite sides of the canyon.</strong> Artist Point is the classic postcard view; Lookout Point is the easy North-Rim view across the gorge. So the overlaps in the names are just different angles on the same two waterfalls.
+        </div>
+      </div>
+
+      <div class="geo-note">⚠ <span><strong>Don't chase every pullout.</strong> Trying to hit every named overlook on both rims leads to fatigue, not better views. <strong>The two that matter are Artist Point (South Rim) and Brink of the Lower Falls (North Rim)</strong> — the core visual payoff is right there. If parking is chaotic, <strong>skip Grand View and Inspiration Point without regret.</strong></span></div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · realistic timing (includes parking + crowds)</div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart VRBO</div>
+            <div class="tl-desc">Earlier is better — the big canyon lots fill by mid-morning and parking gets slow</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h45m · West → Norris → Canyon (~60 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~8:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Brink of the Lower Falls <span class="tl-dur">· ~50 min</span></div>
+            <div class="tl-desc"><em>North Rim, the one effort hike.</em> Steep switchback trail (~0.5 mi round trip, ~600 ft down-and-up) to a platform at the very lip of the 308-ft Lower Falls — you stand where the river goes over and feel the roar. Time includes parking + the climb back. Strenuous; sit it out if anyone has heart/lung issues</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · next North Rim pullout</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~9:40a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Lookout Point <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-desc">Easy North Rim view straight across at the Lower Falls — 13 steps down, ~0.15 mi. (Ignore the steep Red Rock stairway from the same lot — it's the same falls, not worth the extra climb)</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~10:05a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Grand View <span class="tl-dur">· ~15 min · optional</span></div>
+            <div class="tl-desc">Quick overlook down the colorful canyon and river — short walk from the pullout. <strong>Drop it without regret if parking is chaotic</strong> — see the note below</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~10:25a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Inspiration Point <span class="tl-dur">· ~20 min · optional</span></div>
+            <div class="tl-desc">Big panorama at the far end of the one-way loop, looking deep into the canyon. <strong>Also droppable</strong> — see the note below</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~20 min · loop back and over to South Rim Drive</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~11:05a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Upper Falls View <span class="tl-dur">· ~15 min</span></div>
+            <div class="tl-desc"><em>South Rim, first stop on the way in.</em> Short paved path to the smaller 109-ft Upper Falls</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~5 min · to the end of the road</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~11:25a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Artist Point <span class="tl-dur">· ~50 min</span></div>
+            <div class="tl-desc">The iconic Lower Falls view framed by orange canyon walls — the most photographed spot in the park. The walk is easy (0.2 mi paved); the big lot is the slow part in peak summer, so the time budgets for parking</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ short hop to a picnic area</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~12:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Lunch <span class="tl-dur">· ~40 min</span></div>
+            <div class="tl-desc">Canyon Village area has picnic spots + a general store</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ short walk · it's right there in Canyon Village</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~1:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Canyon Visitor Education Center <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">The one museum stop worth making. Exhibits explain the <strong>supervolcano you've been walking on all week</strong> — a room-sized relief model of the park, a rotating globe showing the magma chamber underneath, and displays on why the geysers and hot springs exist at all. Air-conditioned, free, and it ties the whole trip together for kids who like science</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~30 min · south through Hayden to Mud Volcano (~16 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~2:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Sulphur Caldron <span class="tl-dur">· ~10 min</span></div>
+            <div class="tl-desc">A churning yellow-green pool <strong>about as acidic as battery acid</strong> — one of the most acidic springs in the park. Pull over, look, and smell it (it reeks of rotten eggs). Right across the road from Mud Volcano</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ 100 yards across the road</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~2:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Mud Volcano + Dragon's Mouth <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-desc">A churning gray mud cauldron, and beside it a cave-like "mouth" in the hillside that belches steam with an audible growl — the sound is the whole point, kids love it. Short boardwalk loop</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · north into Hayden Valley</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~3:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Hayden Valley <span class="tl-dur">· ~45 min · take our chances</span></div>
+            <div class="tl-desc">A wide open river valley, one of the best wildlife areas in the park. <strong>Bison herds are reliably here in the afternoon</strong> — big ones, often right beside the road. Work the pullouts with binoculars as we pass through. Grizzlies and wolves are a long shot at this hour (they come out closer to dusk), so this is a <strong>drive-through-and-see-what-turns-up</strong> stop, not a stakeout. We're not waiting around for the evening window</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~2h15m · Hayden → Canyon → Norris → West → VRBO (~70 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~6:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Back at VRBO</div>
+            <div class="tl-desc">Home in full daylight, no night driving. Last Yellowstone night — pack up, fire pit, game room</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="craters-box">
+        <div class="craters-title">What the Hayden group costs — decide on the day</div>
+        <div class="craters-body">
+          The Hayden group is <strong>Sulphur Caldron + Mud Volcano + Hayden Valley</strong> — a southern detour from Canyon Village, then back the way you came.<br><br>
+          <strong>Extra driving: ~1h15m</strong> (the ~32-mi round-trip detour south and back)<br>
+          <strong>Extra stop time: ~1h25m</strong> (Sulphur 10 min · Mud Volcano 30 min · Hayden 45 min)<br>
+          <strong>Total cost: ~2h45m</strong><br><br>
+          <strong>Do it →</strong> home ~6:15pm, still full daylight.<br>
+          <strong>Skip it →</strong> home ~3:30pm with time to pack. A fair trade on the last Yellowstone day.<br><br>
+          Worth knowing: Lamar (Day 4) already gives us the premier wildlife morning, in the better valley. Hayden in the afternoon is a bonus — bison are near-guaranteed, predators are a long shot. If the group's worn out after the canyon, skip it without regret.
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon tip">↳</span><span class="stop-text tip">Getting to the North Rim: from Canyon Junction, 1.2 mi south on Grand Loop Rd, then left onto the one-way North Rim Drive. South Rim Drive is the next left, 2.3 mi south of the junction</span></li>
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>Uncle Tom's Trail</strong> (South Rim) is <strong>likely closed</strong> — the historic 300-step descent has been shut for reconstruction for years and probably still is in 2026. Not in the plan; check the visitor-center boards if curious</span></li>
+        </ul>
+
+        <div class="sublabel">🚫 Virginia Cascade Drive — we're skipping this</div>
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt">It looks like a scenic shortcut on the map — a 2.5-mi one-way spur between Norris and Canyon. It isn't.<br><br><strong>The cascade is a 60-ft sloping drop on the Gibbon River, mostly hidden behind thick pines.</strong> No viewing platform, no real parking — you crane over the steering wheel and look through the car window.<br><br><strong>Why it won't land:</strong> today you're standing at the brink of the <strong>308-ft Lower Falls</strong>. After the scale and roar of the Grand Canyon of the Yellowstone, a forested roadside trickle won't register with anyone. And despite the "No RVs" signs, tourists routinely ignore them — one RV turns this narrow road into a 5-mph crawl with nowhere to pass.<br><br><strong>Put those 30–45 min into Canyon Village or Hayden Valley instead.</strong></span></li>
+        </ul>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">VRBO — Island Park (Yellowstone base)</div>
+          <div class="sleep-meta">4778 Fir Road, Island Park, ID 83429 · ~30 min to West entrance</div>
+          <div class="sleep-nights">Night 5 of 5 · Jul 22 · last Yellowstone night</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID+83429" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRANSITION ── -->
+  <div class="section-break"><span>Transition — Yellowstone exit + North Grand Teton</span></div>
+
+  <!-- DAY 7 -->
+  <div class="day-card open" id="d7">
+    <div class="day-header" onclick="toggle('d7')">
+      <div class="day-num-col">
+        <div class="day-num">Day 7</div>
+        <div class="day-date">Jul 23</div>
+        <div class="day-dot-row" style="background:#5C4E7A"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Exit Yellowstone south → North Grand Teton → Driggs</div>
+          <div class="day-stat"><strong>~165 mi · ~4 hrs driving</strong> · 8:30a → ~4:45p · exit Yellowstone, north Teton, Driggs</div></div>
+        <span class="badge b-trans">Transition</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="geo-note">🧭 <span><strong>Where you are:</strong> The handoff day — south through Yellowstone and out the south gate straight into Grand Teton's north end. <strong>There's no gap between the two parks</strong>; you're in Teton the moment you leave Yellowstone. Today covers Teton's <strong>north zone</strong> — the big lakes (Jackson Lake, the largest in the park) and the wildlife flats, with the peaks rising across the water. The tall-peaks half comes tomorrow.</span></div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=Driggs%2C+ID&waypoints=West+Thumb+Geyser+Basin%2C+Yellowstone%7CColter+Bay%2C+Grand+Teton%7COxbow+Bend%2C+Grand+Teton%7CSignal+Mountain+Summit%2C+Grand+Teton" target="_blank" rel="noopener">🗺️ Open Day 7 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=West+Thumb+Geyser+Basin,+Yellowstone+to:Colter+Bay,+Grand+Teton+to:Signal+Mountain+Summit,+Grand+Teton+to:Driggs,+ID&output=embed"></iframe>
+        </div>
+        <div class="route-caption">South through Yellowstone, out the south gate, down through Grand Teton's north zone, then west over to Driggs via Moran and Tetonia (no Teton Pass needed today).</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">8:30a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart VRBO</div>
+            <div class="tl-desc">Load the cars, check out, head south through the park (checkout is by 10am but an earlier start makes the day easier)</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1h45m · West entrance → Old Faithful → West Thumb (~69 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">10:15a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">West Thumb Geyser Basin <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Hot springs and geysers sitting right on the shore of Yellowstone Lake — a combination you see nowhere else in the park. Easy boardwalk</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ short hop to the lakeshore</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">11:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Yellowstone Lake + lunch <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-desc">The biggest high-elevation lake in North America. Picnic on the shore — your last Yellowstone moment before crossing into Teton</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~45 min · West Thumb → south gate → Colter Bay (~33 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">12:45p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Colter Bay, Grand Teton <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-desc">First Teton stop. Easy lakeshore loop with the jagged Teton peaks rising straight up across Jackson Lake</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · south to Jackson Lake Lodge</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Jackson Lake Lodge <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-desc"><strong>Don't bother going inside for the view.</strong> The famous 60-ft lobby windows frame the Tetons, but the <strong>outdoor back terrace has the same view and is open to anyone</strong> — walk around, don't queue through the lobby.<br><br><strong>The real reason to stop:</strong> the lodge sits on a rise, so you're looking <em>down</em> over <strong>Willow Flats</strong> — reliable moose habitat, and scanning it from above beats any roadside pull-off. Get the binoculars out.<br><br>Practical: bathrooms, AC, coffee. Fair warning — Signal Mountain later today gives a higher and more complete panorama, so keep this one short</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~10 min · 3 mi to Oxbow Bend</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Oxbow Bend <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-desc">A calm bend in the Snake River that mirrors Mount Moran — the classic Teton reflection. Moose, otters, eagles, osprey</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · to Signal Mountain</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">3:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Signal Mountain summit <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">A 5-mile paved road to the top — a 360° view over all of Jackson Hole and the Teton range. No hiking, big payoff</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~45 min · Moran → Tetonia → Driggs</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~4:45p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Check in · Driggs</div>
+            <div class="tl-desc">Two nights here as the Teton base</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <div class="sublabel">○ Optional stops on today's route</div>
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>Lewis Falls + Moose Falls</strong> — two roadside waterfalls on the south entry road out of Yellowstone, within 5 min of each other. Both are modest (~30 ft) and visible from the pull-offs. After the 308-ft Lower Falls they won't astonish anyone — take them only if you're passing at a comfortable hour with time to spare. ~10–15 min each</span></li>
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>Lake Butte Overlook</strong> — a short detour off the main road east of Yellowstone Lake, climbing to a 360° view over the whole lake with the Tetons on the horizon on clear days. Worth it if the weather is good. ~20 min</span></li>
+        </ul>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">Super 8 by Wyndham Driggs (Teton base)</div>
+          <div class="sleep-meta">1361 ID-33, Driggs, ID 83422 · +1 208-953-1919</div>
+          <div class="sleep-nights">Night 1 of 2 · Jul 23</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+ID-33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TETON ── -->
+  <div class="section-break"><span>Grand Teton — Central + South</span></div>
+
+  <!-- DAY 8 -->
+  <div class="day-card" id="d8">
+    <div class="day-header" onclick="toggle('d8')">
+      <div class="day-num-col">
+        <div class="day-num">Day 8</div>
+        <div class="day-date">Jul 24</div>
+        <div class="day-dot-row c-teton"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Jenny Lake + valley floor + Jackson</div>
+          <div class="day-stat"><strong>~140 mi · ~3.5 hrs driving</strong> · 7:00a → ~7:30p · scenic loop + Jenny Lake + Jackson</div></div>
+        <span class="badge b-teton">Grand Teton</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <div class="geo-note">🧭 <span><strong>Where you are:</strong> Grand Teton's <strong>central and south zone</strong> — the tall-peaks half of the park, plus the town of Jackson. Reached over Teton Pass, about 45 min from Driggs.</span></div>
+
+      <div class="craters-box">
+        <div class="craters-title">The park's geography in one minute — and the "scenic drive" everyone mentions</div>
+        <div class="craters-body">
+          Grand Teton is simple to picture: <strong>a wall of jagged peaks on the west, a flat sagebrush valley (Jackson Hole) on the east, and the Snake River winding between them.</strong> There are no foothills — the mountains erupt straight out of the valley floor, which is why they look so dramatic.<br><br>
+          Two roads run north–south through that valley, and together they form the <strong>42-Mile Scenic Loop</strong> — the drive people mean when they say "the Grand Teton scenic drive":<br><br>
+          • <strong>Teton Park Road</strong> (the "inner road") — hugs the base of the peaks. Better views, and where Jenny Lake, String Lake, and Signal Mountain sit.<br>
+          • <strong>US-89/191</strong> (the "outer road") — runs up the east side of the valley. This is where the famous <em>distant</em> viewpoints are: Snake River Overlook, Mormon Row, Schwabacher Landing.<br><br>
+          <strong>Today we drive both halves</strong> — north up the outer road for the classic viewpoints, then south down the inner road for the lakes and peaks. So we're doing the scenic loop without calling it that.<br><br>
+          <strong>One branch road is on the plan:</strong> the <strong>Jenny Lake Scenic Drive</strong>, a 4-mile one-way spur off Teton Park Road with the best close-up peak views you can get from a car.<br><br>A second one — the <strong>Moose-Wilson Road</strong> — is famous for moose but is <em>not</em> in our timeline. See the note at the bottom of this day for why.
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Driggs%2C+ID&destination=Driggs%2C+ID&waypoints=Mormon+Row%2C+Grand+Teton%7CSnake+River+Overlook%7CJenny+Lake%2C+Grand+Teton%7CString+Lake%2C+Grand+Teton%7CJackson%2C+WY" target="_blank" rel="noopener">🗺️ Open Day 8 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Driggs,+ID&daddr=Mormon+Row,+Grand+Teton+to:Snake+River+Overlook,+Grand+Teton+to:Jenny+Lake,+Grand+Teton+to:Jackson,+WY&output=embed"></iframe>
+        </div>
+        <div class="route-caption">Over Teton Pass into the valley. North up the outer road (US-89/191) for the classic viewpoints, south down the inner road (Teton Park Rd) for the lakes and peaks — that's the 42-mile scenic loop. Then straight down US-89 to Jackson for dinner, and back over the pass.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · realistic timing (includes parking)</div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart Driggs</div>
+            <div class="tl-desc">Over Teton Pass into Wyoming (~45 min). Photographers can leave earlier for dawn light at Schwabacher Landing or Mormon Row — see the optional list below</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~45 min · Teton Pass → down into Jackson Hole valley</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">7:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Mormon Row + Antelope Flats <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Historic 1890s homestead barns with the whole Teton range rising behind them — one of the most photographed scenes in the park. Bison and pronghorn graze the flats. Small dirt pullouts only, so early is easy</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~15 min · north on the <strong>outer road</strong> (US-89/191)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">8:45a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Snake River Overlook <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-desc">The spot Ansel Adams photographed in 1942 — the river curving below the full sweep of the peaks. Roadside pull-off, no walking</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~30 min · cross over to <strong>Teton Park Road</strong> (the inner road) and south to Jenny Lake</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">9:35a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Jenny Lake — ferry + Hidden Falls + Inspiration Point <span class="tl-dur">· ~3 hrs</span></div>
+            <div class="tl-desc">The park's signature outing. Take the little boat across the lake, then a short walk to <strong>Hidden Falls</strong> (a 100-ft cascade) and up to <strong>Inspiration Point</strong> for the view back over the lake. The South Jenny lot fills by mid-morning, so the earlier we're there the better. <strong>Read the ferry-line note below before we commit to the boat.</strong></div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ lunch at the lake</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">12:40p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Lunch <span class="tl-dur">· ~40 min</span></div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~10 min · north on Teton Park Rd to the Jenny Lake Scenic Drive entrance</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">1:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Jenny Lake Scenic Drive + Cathedral Group Turnout <span class="tl-dur">· ~40 min</span></div>
+            <div class="tl-desc"><strong>The closest you get to the peaks by car.</strong> A 4-mile one-way road (north→south) branching off Teton Park Road. The <strong>Cathedral Group Turnout</strong> is the highlight — a head-on view of Grand Teton, Mount Owen and Teewinot standing together, the most dramatic cluster in the range. Also passes Jenny Lake Overlook and the String/Leigh Lake trailheads. Note it runs one-way southbound, so enter from the north end</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ short hop · String Lake trailhead is right on this road</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">2:10p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">String Lake <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-desc">Calm, shallow and warm enough to wade or swim, with the peaks right overhead — the best "let the kids loose" spot in the park. Quieter than Jenny Lake. Anyone wanting a real hike can do the Taggart Lake loop instead (3–4 mi, moderate) — split the group here</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~30 min · Teton Park Rd south to Moose, then <strong>US-89/191</strong> south into Jackson (wide, fast, 55 mph)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">4:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Jackson town + dinner <span class="tl-dur">· ~2.5 hrs</span></div>
+            <div class="tl-desc">Town Square with its four elk-antler arches, shops, and dinner — each family picks its own spot. The main highway funnels all five cars straight in with no surprises</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~45 min · Jackson → WY-22 → Teton Pass → Driggs</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~7:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Back in Driggs</div>
+            <div class="tl-desc">Pull over at the top of Teton Pass for the valley panorama on the way. Last Teton night</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="craters-box">
+        <div class="craters-title">Jenny Lake ferry — have a plan B before you queue</div>
+        <div class="craters-body">
+          In late July the line just to <em>board</em> the ferry can exceed <strong>45 minutes by 10:00 AM</strong>. That's 45 minutes of standing still with kids, and it eats the buffer this day depends on.<br><br>
+          <strong>The call to make on arrival (~9:35am):</strong> walk up, look at the ferry line, and decide immediately.<br><br>
+          <strong>If the line is long → walk instead.</strong> The trail around the south end of the lake to Hidden Falls is <strong>2.0 miles, flat and scenic</strong>. With a group this size, walking is often <em>faster</em> than standing in the queue — and far less frustrating. Nobody's stuck waiting.<br><br>
+          <strong>Then take the ferry back.</strong> The return line moves much faster, so you still get the boat ride across the lake — just in the other direction, with no queue.<br><br>
+          Either way the ~3 hrs holds. The point is to <strong>not default to the boat</strong> and lose an hour to a line.
+        </div>
+      </div>
+
+      <div class="stops-section">
+        <div class="sublabel">🌅 Optional dawn start — for the photographers</div>
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt">Leaving Driggs at ~5:15am puts you in the valley for sunrise (~6am in July). <strong>Schwabacher Landing</strong> is the premier dawn spot — a quiet Snake River side channel where beaver dams still the water into a mirror, reflecting the whole range. Moose are common here at first light. <strong>Mormon Row</strong> also glows at sunrise. Only worth it for those who genuinely want it — no need to drag the whole group</span></li>
+        </ul>
+
+        <div class="sublabel">🥾 Optional extension at Jenny Lake</div>
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>Cascade Canyon</strong> — continue past Inspiration Point and the trail flattens into a wide glacial canyon between the peaks. Widely considered the best hike in the park, and <strong>the best moose odds on foot</strong>. Go as far as you like and turn back — even a mile in is worth it. Adds 1–2 hrs; the ferry back runs until early evening</span></li>
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>Taggart Lake</strong> — a moderate 3–4 mi loop through wildflower meadows to a lake at the base of the peaks. Good alternative for anyone who'd rather hike than swim while the others are at String Lake</span></li>
+        </ul>
+
+        <div class="sublabel">🫎 Moose-Wilson Road — optional, and we're not planning on it</div>
+        <ul class="stops">
+          <li class="stop"><span class="stop-icon opt">○</span><span class="stop-text opt"><strong>The draw is real:</strong> an 8-mile road from Moose to Wilson through dense wetlands and hawthorn thickets — the most famous moose-and-bear road in Grand Teton.<br><br>
+          <strong>The reality:</strong> it's the narrowest paved road in the park, and roughly <strong>1.5 miles of it is unpaved, dusty and rutted</strong>. The moment one moose steps near the road, traffic stops dead <em>in both directions</em>. With almost no shoulders or pullouts, a 20-minute drive becomes a <strong>90-minute bumper-to-bumper crawl</strong> with no way out.<br><br>
+          <strong>The multi-car problem — this is the real reason:</strong> with five cars, keeping the group together here is impossible. If the lead car stops for a moose, cars three, four and five are stuck around a blind curve a quarter-mile back with <strong>no cell service</strong> to ask what's happening. That's a recipe for frustration at the end of a long day.<br><br>
+          <strong>What we do instead:</strong> at 4pm, hungry and tired, take <strong>US-89/191</strong> — wide, fast, 55 mph, clear sightlines. It funnels all five cars straight into Jackson for dinner with no unpredictable delays.<br><br>
+          <em>If a sub-group really wants the moose hunt and is happy to go it alone and meet the others in Jackson, this is where they'd do it.</em></span></li>
+        </ul>
+      </div>
+      <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">Super 8 by Wyndham Driggs (Teton base)</div>
+          <div class="sleep-meta">1361 ID-33, Driggs, ID 83422 · +1 208-953-1919</div>
+          <div class="sleep-nights">Night 2 of 2 · Jul 24 · last Teton night</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Super+8+by+Wyndham+Driggs%2C+1361+ID-33%2C+Driggs%2C+ID+83422" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RETURN ── -->
+  <div class="section-break"><span>Return — via Salt Lake City &amp; Elko</span></div>
+
+  <!-- DAY 9 -->
+  <div class="day-card" id="d9">
+    <div class="day-header" onclick="toggle('d9')">
+      <div class="day-num-col">
+        <div class="day-num">Day 9</div>
+        <div class="day-date">Jul 25</div>
+        <div class="day-dot-row c-drive"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Checkout Driggs → SLC brief stop → Bonneville Salt Flats → Elko</div>
+          <div class="day-stat"><strong>~510 mi · ~8 hrs driving</strong> · 8:00a → ~6:00p · the long return leg</div></div>
+        <span class="badge b-drive">Drive</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Driggs%2C+ID&destination=Elko%2C+NV&waypoints=Salt+Lake+City%2C+UT%7CBonneville+Salt+Flats" target="_blank" rel="noopener">🗺️ Open Day 9 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Driggs,+ID&daddr=Salt+Lake+City,+UT+to:Bonneville+Salt+Flats+to:Elko,+NV&output=embed"></iframe>
+        </div>
+        <div class="route-caption">The big return leg: I-15 south to Salt Lake City, then I-80 west across the salt flats into Nevada. The longest driving day of the trip.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">8:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart Driggs</div>
+            <div class="tl-desc">Fastest line is Driggs → Idaho Falls → I-15 south (skips Teton Pass; Jackson was covered yesterday)</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~4.5 hrs · Driggs → Idaho Falls → I-15 south → SLC</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~12:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Salt Lake City <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-desc">Lunch + a quick leg-stretch — Temple Square or a coffee. A brief stop, not a full sightseeing afternoon. Fuel up before the Nevada stretch</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~1.5 hrs · I-80 west (~120 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~3:30p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Bonneville Salt Flats <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-desc">A dead-flat white expanse of hard salt stretching to the horizon — pull off at the Wendover exit and walk out onto it. Free. Kids will want to run around</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~2 hrs · I-80 west (~110 mi)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~6:00p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Check in · Elko, NV</div>
+            <div class="tl-desc">Dinner in town. Roughly ~8 hrs driving today — the trade-off that leaves an easy finish tomorrow</div>
+          </div>
+        </div>
+      </div>
+            <div class="sleep-row">
+        <span class="sleep-icon">🛏</span>
+        <div class="sleep-info">
+          <div class="sleep-name">Days Inn by Wyndham Elko</div>
+          <div class="sleep-meta">1500 Idaho St, Elko, NV 89801 · +1 775-299-5424</div>
+          <div class="sleep-nights">1 night · Jul 25</div>
+        </div>
+        <a class="sleep-dir" href="https://www.google.com/maps/dir/?api=1&destination=Days+Inn+by+Wyndham+Elko%2C+1500+Idaho+St%2C+Elko%2C+NV+89801" target="_blank" rel="noopener">↳ Directions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 10 -->
+  <div class="day-card" id="d10">
+    <div class="day-header" onclick="toggle('d10')">
+      <div class="day-num-col">
+        <div class="day-num">Day 10</div>
+        <div class="day-date">Jul 26</div>
+        <div class="day-dot-row c-drive"></div>
+      </div>
+      <div class="day-title-col">
+        <div class="day-title-inner">
+          <div class="day-title">Elko → Santa Clara</div>
+          <div class="day-stat"><strong>~520 mi · ~8 hrs driving</strong> · 8:00a → ~4:45p · I-80 west, one stop in Reno</div></div>
+        <span class="badge b-drive">Drive</span>
+        <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+    </div>
+    <div class="day-body">
+
+      <!-- MAP -->
+      <div class="map-block">
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=Elko%2C+NV&destination=3681+Peacock+Ct%2C+Santa+Clara%2C+CA&waypoints=Reno%2C+NV" target="_blank" rel="noopener">🗺️ Open Day 10 route in Google Maps →</a>
+        <div class="map-embed">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=Elko,+NV&daddr=Reno,+NV+to:3681+Peacock+Ct,+Santa+Clara,+CA&output=embed"></iframe>
+        </div>
+        <div class="route-caption">Straight shot home on I-80 west — Nevada high desert, over Donner Pass, down into the Sacramento Valley and the Bay.</div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-head">Timeline · rough timing</div>
+
+        <div class="tl-item">
+          <div class="tl-time">8:00a</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Depart Elko</div>
+            <div class="tl-desc">Long but simple — one road, one stop. The clock gains an hour crossing back into Pacific time at the Nevada/California line</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~4.25 hrs · I-80 west, ~290 mi across the Nevada desert (fuel wherever you need it)</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~12:15p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Reno, NV <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-desc">Lunch + stretch. Last real stop before the Sierra climb. <strong>Costco Reno</strong> (2200 Harvard Wy) is right off I-80/I-580 — the only Costco on the entire return leg, so it's the cheapest fuel of the drive, and it's open by the time you arrive</div>
+          </div>
+        </div>
+        <div class="tl-item"><div class="tl-time"></div>
+          <div class="tl-body"><span class="tl-dot drive"></span><span class="tl-drive">↓ drive ~3.75 hrs · ~230 mi over Donner Pass → Sacramento → Bay Area</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">~4:45p</div>
+          <div class="tl-body"><span class="tl-dot"></span>
+            <div class="tl-name">Home · Santa Clara 🏠</div>
+            <div class="tl-desc">~520 mi · ~8 hrs driving. Trip complete</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSING -->
+  <div class="missing-card">
+    <div class="missing-title">Not in the current plan — worth discussing</div>
+    <ul class="missing-list">
+      <li class="missing-item"><strong>Mount Washburn hike</strong> (Yellowstone) — Dunraven Pass, 6 mi RT, best panoramic hike in the park with a fire tower at the summit. Needs its own half-day. The trailhead is on Dunraven Pass, which we already drive on the Lamar day (Day 4) — but that day is long enough already. Would mean swapping something out</li>
+      <li class="missing-item"><strong>Avalanche Peak</strong> (Yellowstone, East Entrance) — 4.5 mi, 2,100 ft gain, best summit views in the park. Far from the west-side base. Needs a dedicated day with an early start. Good option for older kids (12-14); skip if group doesn't want the commitment</li>
+      <li class="missing-item"><strong>Phelps Lake hike</strong> (Grand Teton) — 7-mi loop, fire lookout views, far less crowded than Jenny Lake area. Could substitute for Taggart Lake on Day 8</li>
+    </ul>
+  </div>
+
+  <!-- REMINDERS -->
+  <div class="missing-card" style="margin-top:12px;border-color:rgba(193,125,43,0.3)">
+    <div class="missing-title" style="color:var(--amber)">Pre-trip checklist</div>
+    <ul class="missing-list">
+      <li class="missing-item"><strong>Standardize departures at 7:00 AM</strong> — for every park day except Lamar (Day 4, which needs its 5:00 AM start), leave by <strong>7:00 AM</strong>. It clears the entrance gate before the queue forms, and gets you into the popular lots before parking turns into a hunt. One habit, five easier mornings</li>
+      <li class="missing-item"><strong>Lodging — all booked ✓</strong> Quality Inn Twin Falls (Jul 17) · VRBO Island Park (Jul 18–23) · Super 8 Driggs (Jul 23–25) · Days Inn Elko (Jul 25)</li>
+      <li class="missing-item"><strong>America the Beautiful Pass</strong> — $80/vehicle, covers Yellowstone + Grand Teton + Craters of the Moon. Buy at nps.gov before departure. Pays for itself Day 2</li>
+      <li class="missing-item"><strong>Geyser Times app</strong> — free, predicts eruption windows for Old Faithful and other geysers. Download before the trip</li>
+      <li class="missing-item"><strong>Jenny Lake ferry</strong> — no advance reservation; buy tickets on arrival (Day 8). Go early in July, lines build fast</li>
+      <li class="missing-item"><strong>Binoculars</strong> — mandatory for the Lamar Valley wildlife day (Day 4). One pair per family minimum</li>
+      <li class="missing-item"><strong>Teton Pass status</strong> — confirmed permanently repaired (June 2025). Verify wyoroad.info closer to departure. Needed for Day 8 Wyoming-side stops</li>
+      <li class="missing-item"><strong>Layers + rain shell</strong> — Yellowstone mornings are cold even in July (30s–40s°F at dawn), afternoons warm. Lamar day starts pre-dawn</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  Yellowstone + Grand Teton · July 17–26, 2026 · Five families · All lodging confirmed
+</div>
+
+<script>
+function toggle(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+// All day cards open by default
+document.querySelectorAll('.day-card').forEach(card => card.classList.add('open'));
+</script>
+
+<script>
+  // Register service worker so the page works with no signal.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').catch(function () {});
+    });
+  }
+
+  // Platform-specific "save this" instructions.
+  (function () {
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    var el = document.getElementById('howTo');
+    var banner = document.getElementById('offlineBanner');
+
+    if (standalone) { banner.style.display = 'none'; return; }
+
+    if (isIOS) {
+      el.innerHTML = ' <strong>iPhone:</strong> tap Share <strong>⬆︎</strong> → <strong>Add to Home Screen</strong>.';
+    } else {
+      el.innerHTML = ' <strong>Android:</strong> tap <strong>⋮</strong> → <strong>Add to Home screen</strong> (or hit Install).';
+    }
+  })();
+
+  // Chrome/Android native install prompt.
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    var b = document.getElementById('installBtn');
+    b.style.display = 'inline-block';
+    b.onclick = function () {
+      b.style.display = 'none';
+      deferred.prompt();
+      deferred = null;
+    };
+  });
+</script>
+</body>
+</html>
