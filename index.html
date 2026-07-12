@@ -470,7 +470,7 @@
     color: var(--text-light);
     margin-bottom: 12px;
   }
-  .missing-list { display: flex; flex-direction: column; gap: 8px; }
+  .missing-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .missing-item { font-size: 12.5px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.55; }
   .missing-item::before { content: '—'; position: absolute; left: 0; color: var(--stone); }
 
@@ -1909,7 +1909,7 @@
           <div class="tl-time">~6:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
             <div class="tl-name">Check in · Elko, NV</div>
-            <div class="tl-desc">Dinner in town. Roughly ~8 hrs driving today — the trade-off that leaves an easy finish tomorrow</div>
+            <div class="tl-desc">Dinner in town. Roughly ~8 hrs driving today — tomorrow is a similar length, so rest up</div>
           </div>
         </div>
       </div>
@@ -2047,11 +2047,12 @@ document.querySelectorAll('.day-card').forEach(card => card.classList.add('open'
 
     if (standalone) { banner.style.display = 'none'; return; }
 
-    if (isIOS) {
-      el.innerHTML = ' <strong>iPhone:</strong> tap Share <strong>⬆︎</strong> → <strong>Add to Home Screen</strong>.';
-    } else {
-      el.innerHTML = ' <strong>Android:</strong> tap <strong>⋮</strong> → <strong>Add to Home screen</strong> (or hit Install).';
-    }
+    var iosHint = '<strong>iPhone:</strong> tap Share <strong>⬆︎</strong> → <strong>Add to Home Screen</strong>.';
+    var androidHint = '<strong>Android:</strong> tap <strong>⋮</strong> → <strong>Add to Home screen</strong> (or hit Install).';
+    // Lead with the current device's steps, but always show both so every family is covered.
+    el.innerHTML = isIOS
+      ? ' ' + iosHint + ' &nbsp;' + androidHint
+      : ' ' + androidHint + ' &nbsp;' + iosHint;
   })();
 
   // Chrome/Android native install prompt.
