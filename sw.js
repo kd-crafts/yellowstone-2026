@@ -1,5 +1,5 @@
 // Bump this version whenever you update index.html — it forces a refresh.
-const CACHE = 'trip-v5';
+const CACHE = 'trip-v6';
 
 const ASSETS = [
   './',

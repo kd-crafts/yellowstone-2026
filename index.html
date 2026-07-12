@@ -44,6 +44,8 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html, body { overflow-x: hidden; }
+
   body {
     background: var(--cream);
     color: var(--text);
@@ -51,6 +53,8 @@
     font-weight: 400;
     line-height: 1.6;
     min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
   }
 
   /* HEADER */
@@ -435,6 +439,22 @@
   .tl-dur { font-size: 12.5px; color: var(--amber); font-weight: 500; }
   .tl-desc { font-size: 14px; color: var(--text-muted); margin-top: 2px; line-height: 1.5; }
   .tl-drive { font-size: 12.5px; color: var(--text-light); font-style: italic; }
+  .tl-dir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-left: 7px;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--forest-light);
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(45,74,62,0.10);
+  }
+  .tl-dir svg { width: 13px; height: 13px; display: block; }
+  .tl-dir:active { background: var(--cream-dark); }
+  @media (hover: hover) { .tl-dir:hover { background: var(--cream-dark); border-color: var(--forest-light); } }
 
   /* SLEEP */
   .sleep-row {
@@ -721,7 +741,7 @@
         <div class="tl-item">
           <div class="tl-time">~8:00a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Reno, NV <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-name">Reno, NV <span class="tl-dur">· ~30 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Reno%2C+NV" target="_blank" rel="noopener" aria-label="Directions to Reno, NV"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Breakfast + fuel. <strong>Costco Reno</strong> (2200 Harvard Wy, just off I-80/I-580) — the gas station opens early, but note the <strong>warehouse itself doesn't open until 10am</strong>, so at this hour it's fuel only</div>
           </div>
         </div>
@@ -732,7 +752,7 @@
         <div class="tl-item">
           <div class="tl-time">~12:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Wells, NV <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Wells, NV <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Wells%2C+NV" target="_blank" rel="noopener" aria-label="Directions to Wells, NV"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Lunch + fuel. Last reliable stop before US-93 turns north into Idaho (still Pacific time here)</div>
           </div>
         </div>
@@ -743,7 +763,7 @@
         <div class="tl-item">
           <div class="tl-time">~6:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Shoshone Falls, Twin Falls <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Shoshone Falls, Twin Falls <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Shoshone+Falls%2C+Twin+Falls%2C+ID" target="_blank" rel="noopener" aria-label="Directions to Shoshone Falls, Twin Falls"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">"Niagara of the West" — a 212-ft waterfall on the Snake River, taller than Niagara and wider than a thousand feet across. Short walk to the overlook, entry ~$5/car. July light lasts to ~9pm, so no rush</div>
           </div>
         </div>
@@ -754,7 +774,7 @@
         <div class="tl-item">
           <div class="tl-time">evening</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Dinner + check in · Quality Inn</div>
+            <div class="tl-name">Dinner + check in · Quality Inn<a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=1910+Fillmore+Street+North%2C+Twin+Falls%2C+ID" target="_blank" rel="noopener" aria-label="Directions to Dinner + check in · Quality Inn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Times are all Mountain now. Total: ~11 hrs driving + ~1.5 hrs breaks</div>
           </div>
         </div>
@@ -822,7 +842,7 @@
         <div class="tl-item">
           <div class="tl-time">10:30a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Craters of the Moon <span class="tl-dur">· ~2 hrs</span></div>
+            <div class="tl-name">Craters of the Moon <span class="tl-dur">· ~2 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Craters+of+the+Moon+National+Monument" target="_blank" rel="noopener" aria-label="Directions to Craters of the Moon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A black volcanic landscape of hardened lava flows, cinder cones, and caves — so otherworldly that NASA trained astronauts here. See the "what to do" note below</div>
           </div>
         </div>
@@ -833,7 +853,7 @@
         <div class="tl-item">
           <div class="tl-time">2:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Costco, Idaho Falls <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Costco, Idaho Falls <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Costco%2C+Idaho+Falls%2C+ID" target="_blank" rel="noopener" aria-label="Directions to Costco, Idaho Falls"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Fuel + stock up. Last big grocery before Island Park — load the VRBO here (2495 E Lincoln Rd)</div>
           </div>
         </div>
@@ -854,7 +874,7 @@
         <div class="tl-item">
           <div class="tl-time">~5:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Island Park VRBO</div>
+            <div class="tl-name">Island Park VRBO<a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=4778+Fir+Road%2C+Island+Park%2C+ID" target="_blank" rel="noopener" aria-label="Directions to Island Park VRBO"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Check in, drop bags, unload supplies. Optional evening run into the park for Old Faithful if the group has energy</div>
           </div>
         </div>
@@ -906,9 +926,9 @@
 
       <!-- MAP -->
       <div class="map-block">
-        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Grand+Prismatic+Spring%2C+Yellowstone%7COld+Faithful%2C+Yellowstone%7CKepler+Cascades%7CFountain+Paint+Pot%2C+Yellowstone%7CFirehole+Canyon+Drive%2C+Yellowstone" target="_blank" rel="noopener">🗺️ Open Day 3 route in Google Maps →</a>
+        <a class="map-cta" href="https://www.google.com/maps/dir/?api=1&origin=4778+Fir+Road%2C+Island+Park%2C+ID&destination=4778+Fir+Road%2C+Island+Park%2C+ID&waypoints=Grand+Prismatic+Spring%2C+Yellowstone%7COld+Faithful%2C+Yellowstone%7CKepler+Cascades%7CFountain+Paint+Pot%2C+Yellowstone+National+Park%7CFirehole+Canyon+Drive%2C+Yellowstone" target="_blank" rel="noopener">🗺️ Open Day 3 route in Google Maps →</a>
         <div class="map-embed">
-          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Grand+Prismatic+Spring,+Yellowstone+to:Old+Faithful,+Yellowstone+to:Fountain+Paint+Pot,+Yellowstone+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?saddr=4778+Fir+Road,+Island+Park,+ID&daddr=Grand+Prismatic+Spring,+Yellowstone+to:Old+Faithful,+Yellowstone+to:Fountain+Paint+Pot,+Yellowstone+National+Park+to:4778+Fir+Road,+Island+Park,+ID&output=embed"></iframe>
         </div>
         <div class="route-caption">Southwest leg of the figure-8: West entrance → Madison → south to Old Faithful, then back the same way. Live map needs signal; if you're offline, use the timeline below.</div>
       </div>
@@ -931,7 +951,7 @@
         <div class="tl-item">
           <div class="tl-time">7:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Grand Prismatic Overlook <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-name">Grand Prismatic Overlook <span class="tl-dur">· ~1 hr</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Grand+Prismatic+Spring+Overlook%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Grand Prismatic Overlook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Flat 1.2-mi round-trip walk (Fairy Falls trail) to the hillside viewpoint — the only spot you see the whole rainbow spring from above. The parking lot is small and fills fast, so an early arrival matters here more than anywhere on this day</div>
           </div>
         </div>
@@ -942,7 +962,7 @@
         <div class="tl-item">
           <div class="tl-time">8:50a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Midway Geyser Basin <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Midway Geyser Basin <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Midway+Geyser+Basin%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Midway Geyser Basin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Grand Prismatic from ground level — up close, huge scale. Boardwalk loop. Big lot but busy; a few minutes to park by mid-morning</div>
           </div>
         </div>
@@ -953,7 +973,7 @@
         <div class="tl-item">
           <div class="tl-time">9:50a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Black Sand Basin <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-name">Black Sand Basin <span class="tl-dur">· ~30 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Black+Sand+Basin%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Black Sand Basin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Small boardwalk of vivid pools and a geyser. This is our stand-in for Biscuit Basin, which is closed — see the note at the bottom of this day</div>
           </div>
         </div>
@@ -964,7 +984,7 @@
         <div class="tl-item">
           <div class="tl-time">10:25a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Old Faithful + Upper Geyser Basin + the Inn <span class="tl-dur">· ~2.5 hrs (incl. lunch)</span></div>
+            <div class="tl-name">Old Faithful + Upper Geyser Basin + the Inn <span class="tl-dur">· ~2.5 hrs (incl. lunch)</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Old+Faithful%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Old Faithful"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Turnaround point. Time an eruption (Geyser Times app), walk the boardwalk loop past Grand Geyser and Chromatic Pool, and step inside <strong>Old Faithful Inn</strong> — a seven-story log lobby built in 1904, worth 20 min on its own. Lunch here. The lot is huge, so the eruption schedule sets your pace, not parking</div>
           </div>
         </div>
@@ -975,7 +995,7 @@
         <div class="tl-item">
           <div class="tl-time">1:05p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Kepler Cascades <span class="tl-dur">· ~10 min</span></div>
+            <div class="tl-name">Kepler Cascades <span class="tl-dur">· ~10 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Kepler+Cascades%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Kepler Cascades"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A 150-ft cascade dropping through a narrow rock gorge, seen from a viewing platform a few steps from the car. No walking, no cost — you drive right past it</div>
           </div>
         </div>
@@ -986,7 +1006,7 @@
         <div class="tl-item">
           <div class="tl-time">1:40p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Fountain Paint Pot <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Fountain Paint Pot <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Fountain+Paint+Pot%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Fountain Paint Pot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The best short boardwalk in the park — a half-mile flat loop that hits <strong>all four kinds of thermal feature in one walk</strong>: a geyser, a hot spring, a bubbling mud pot, and a hissing steam vent. Easy, consistently one of the highest-rated stops in Yellowstone, and you drive right past it. Don't skip this one</div>
           </div>
         </div>
@@ -997,7 +1017,7 @@
         <div class="tl-item">
           <div class="tl-time">2:30p</div>
           <div class="tl-body"><span class="tl-dot" style="background:var(--stone)"></span>
-            <div class="tl-name">Firehole Lake Drive <span class="tl-dur" style="color:#A03C32">· SKIP BY DEFAULT</span></div>
+            <div class="tl-name">Firehole Lake Drive <span class="tl-dur" style="color:#A03C32">· SKIP BY DEFAULT</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Firehole+Lake+Drive%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Firehole Lake Drive"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc"><strong style="color:#A03C32">Only do this with a confirmed eruption prediction that lines up with our arrival. Otherwise drive past it.</strong><br><br>See the note below for why</div>
           </div>
         </div>
@@ -1008,7 +1028,7 @@
         <div class="tl-item">
           <div class="tl-time">3:20p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Firehole Canyon Drive <span class="tl-dur">· ~30–60 min</span></div>
+            <div class="tl-name">Firehole Canyon Drive <span class="tl-dur">· ~30–60 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Firehole+Canyon+Drive%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Firehole Canyon Drive"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">1-way scenic loop: Firehole Falls plus the park's only legal swimming hole (~3–5 ft deep, mild current, no lifeguard). Swim is optional — the <em>josh</em> call</div>
           </div>
         </div>
@@ -1114,7 +1134,7 @@
         <div class="tl-item">
           <div class="tl-time">7:15a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Lamar Valley <span class="tl-dur">· ~3 hrs</span></div>
+            <div class="tl-name">Lamar Valley <span class="tl-dur">· ~3 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Lamar+Valley%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Lamar Valley"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">"America's Serengeti" — bison herds, pronghorn, often wolves and grizzlies. Scan slowly from the pullouts; don't just drive through. Binoculars essential. This is the payoff for the early start</div>
           </div>
         </div>
@@ -1125,7 +1145,7 @@
         <div class="tl-item">
           <div class="tl-time">10:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Tower Fall <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-name">Tower Fall <span class="tl-dur">· ~30 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Tower+Fall%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Tower Fall"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">132-ft waterfall dropping into a narrow canyon, framed by rock spires. Short walk from the parking area to the overlook</div>
           </div>
         </div>
@@ -1136,7 +1156,7 @@
         <div class="tl-item">
           <div class="tl-time">11:20a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Calcite Springs Overlook <span class="tl-dur">· ~15 min</span></div>
+            <div class="tl-name">Calcite Springs Overlook <span class="tl-dur">· ~15 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Calcite+Springs+Overlook%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Calcite Springs Overlook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A short boardwalk to a dramatic view straight down into the Yellowstone River canyon — yellow sulphur deposits streak the cliffs and steam vents hiss out of the rock walls below. Basalt columns line the far side. Right beside Tower Fall, so it's a free add</div>
           </div>
         </div>
@@ -1147,7 +1167,7 @@
         <div class="tl-item">
           <div class="tl-time">11:40a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Yellowstone River Picnic Area — lunch <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Yellowstone River Picnic Area — lunch <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Yellowstone+River+Picnic+Area%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Yellowstone River Picnic Area — lunch"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A proper picnic spot rather than a roadside pullout, set above the river near Tower Junction. A short trail runs along the canyon rim from here — <strong>bighorn sheep are commonly seen on the cliffs</strong>, and it's a good leg-stretch before the long drive back</div>
           </div>
         </div>
@@ -1228,7 +1248,7 @@
         <div class="tl-item">
           <div class="tl-time">~8:30a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Gibbon Falls <span class="tl-dur">· ~5 min</span></div>
+            <div class="tl-name">Gibbon Falls <span class="tl-dur">· ~5 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Gibbon+Falls%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Gibbon Falls"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">An 84-ft waterfall spilling over the rim of the old volcanic caldera. Paved roadside pull-off and overlook — quick photo stop</div>
           </div>
         </div>
@@ -1239,7 +1259,7 @@
         <div class="tl-item">
           <div class="tl-time">~8:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Beryl Spring <span class="tl-dur">· ~5 min</span></div>
+            <div class="tl-name">Beryl Spring <span class="tl-dur">· ~5 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Beryl+Spring%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Beryl Spring"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A violently boiling hot spring hissing and steaming right beside the road — one of the hottest in the park. No walking, just pull over and look</div>
           </div>
         </div>
@@ -1250,7 +1270,7 @@
         <div class="tl-item">
           <div class="tl-time">~8:55a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Artist Paint Pots <span class="tl-dur">· ~40 min</span></div>
+            <div class="tl-name">Artist Paint Pots <span class="tl-dur">· ~40 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Artist+Paint+Pots%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Artist Paint Pots"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Mud pots — bubbling, plopping pools of colored clay. Easy 1-mi round-trip boardwalk. The "mud" category of Yellowstone thermal features; kids love the sounds</div>
           </div>
         </div>
@@ -1261,7 +1281,7 @@
         <div class="tl-item">
           <div class="tl-time">~9:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Norris Geyser Basin <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-name">Norris Geyser Basin <span class="tl-dur">· ~1.5 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Norris+Geyser+Basin%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Norris Geyser Basin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Hottest, most acidic basin in the park. Porcelain Basin (neon mineral flats) + Back Basin (Steamboat, the world's tallest active geyser). Boardwalk loops. Sizable lot but it fills midday — arriving before ~10am keeps parking quick</div>
           </div>
         </div>
@@ -1272,7 +1292,7 @@
         <div class="tl-item">
           <div class="tl-time">~11:50a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Mammoth Hot Springs + lunch <span class="tl-dur">· ~2 hrs</span></div>
+            <div class="tl-name">Mammoth Hot Springs + lunch <span class="tl-dur">· ~2 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Mammoth+Hot+Springs%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Mammoth Hot Springs + lunch"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Tiered white travertine terraces — like a frozen waterfall of limestone, unlike anything else in the park. Lower Terraces (boardwalks) + Upper Terrace Drive. Elk often lounge on the lawns at Fort Yellowstone. Lunch here. Parking is spread across a few lots (lower boardwalk + Upper Terrace Drive), so allow a few minutes to reposition between them</div>
           </div>
         </div>
@@ -1283,7 +1303,7 @@
         <div class="tl-item">
           <div class="tl-time">~2:10p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Roosevelt Arch, Gardiner <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-name">Roosevelt Arch, Gardiner <span class="tl-dur">· ~20 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Roosevelt+Arch%2C+Gardiner%2C+MT" target="_blank" rel="noopener" aria-label="Directions to Roosevelt Arch, Gardiner"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The original grand north entrance — 50-ft stone arch inscribed "For the benefit and enjoyment of the people." Classic photo stop</div>
           </div>
         </div>
@@ -1387,7 +1407,7 @@
         <div class="tl-item">
           <div class="tl-time">~8:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Brink of the Lower Falls <span class="tl-dur">· ~50 min</span></div>
+            <div class="tl-name">Brink of the Lower Falls <span class="tl-dur">· ~50 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Brink+of+the+Lower+Falls%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Brink of the Lower Falls"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc"><em>North Rim, the one effort hike.</em> Steep switchback trail (~0.5 mi round trip, ~600 ft down-and-up) to a platform at the very lip of the 308-ft Lower Falls — you stand where the river goes over and feel the roar. Time includes parking + the climb back. Strenuous; sit it out if anyone has heart/lung issues</div>
           </div>
         </div>
@@ -1398,7 +1418,7 @@
         <div class="tl-item">
           <div class="tl-time">~9:40a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Lookout Point <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-name">Lookout Point <span class="tl-dur">· ~20 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Lookout+Point%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Lookout Point"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Easy North Rim view straight across at the Lower Falls — 13 steps down, ~0.15 mi. (Ignore the steep Red Rock stairway from the same lot — it's the same falls, not worth the extra climb)</div>
           </div>
         </div>
@@ -1409,7 +1429,7 @@
         <div class="tl-item">
           <div class="tl-time">~10:05a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Grand View <span class="tl-dur">· ~15 min · optional</span></div>
+            <div class="tl-name">Grand View <span class="tl-dur">· ~15 min · optional</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Grand+View+Point%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Grand View"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Quick overlook down the colorful canyon and river — short walk from the pullout. <strong>Drop it without regret if parking is chaotic</strong> — see the note below</div>
           </div>
         </div>
@@ -1420,7 +1440,7 @@
         <div class="tl-item">
           <div class="tl-time">~10:25a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Inspiration Point <span class="tl-dur">· ~20 min · optional</span></div>
+            <div class="tl-name">Inspiration Point <span class="tl-dur">· ~20 min · optional</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Inspiration+Point%2C+North+Rim+Drive%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Inspiration Point"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Big panorama at the far end of the one-way loop, looking deep into the canyon. <strong>Also droppable</strong> — see the note below</div>
           </div>
         </div>
@@ -1431,7 +1451,7 @@
         <div class="tl-item">
           <div class="tl-time">~11:05a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Upper Falls View <span class="tl-dur">· ~15 min</span></div>
+            <div class="tl-name">Upper Falls View <span class="tl-dur">· ~15 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Upper+Falls+View%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Upper Falls View"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc"><em>South Rim, first stop on the way in.</em> Short paved path to the smaller 109-ft Upper Falls</div>
           </div>
         </div>
@@ -1442,7 +1462,7 @@
         <div class="tl-item">
           <div class="tl-time">~11:25a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Artist Point <span class="tl-dur">· ~50 min</span></div>
+            <div class="tl-name">Artist Point <span class="tl-dur">· ~50 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Artist+Point%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Artist Point"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The iconic Lower Falls view framed by orange canyon walls — the most photographed spot in the park. The walk is easy (0.2 mi paved); the big lot is the slow part in peak summer, so the time budgets for parking</div>
           </div>
         </div>
@@ -1464,7 +1484,7 @@
         <div class="tl-item">
           <div class="tl-time">~1:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Canyon Visitor Education Center <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Canyon Visitor Education Center <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Canyon+Visitor+Education+Center%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Canyon Visitor Education Center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The one museum stop worth making. Exhibits explain the <strong>supervolcano you've been walking on all week</strong> — a room-sized relief model of the park, a rotating globe showing the magma chamber underneath, and displays on why the geysers and hot springs exist at all. Air-conditioned, free, and it ties the whole trip together for kids who like science</div>
           </div>
         </div>
@@ -1475,7 +1495,7 @@
         <div class="tl-item">
           <div class="tl-time">~2:15p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Sulphur Caldron <span class="tl-dur">· ~10 min</span></div>
+            <div class="tl-name">Sulphur Caldron <span class="tl-dur">· ~10 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Sulphur+Caldron%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Sulphur Caldron"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A churning yellow-green pool <strong>about as acidic as battery acid</strong> — one of the most acidic springs in the park. Pull over, look, and smell it (it reeks of rotten eggs). Right across the road from Mud Volcano</div>
           </div>
         </div>
@@ -1486,7 +1506,7 @@
         <div class="tl-item">
           <div class="tl-time">~2:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Mud Volcano + Dragon's Mouth <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-name">Mud Volcano + Dragon's Mouth <span class="tl-dur">· ~30 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Mud+Volcano%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Mud Volcano + Dragon's Mouth"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A churning gray mud cauldron, and beside it a cave-like "mouth" in the hillside that belches steam with an audible growl — the sound is the whole point, kids love it. Short boardwalk loop</div>
           </div>
         </div>
@@ -1497,7 +1517,7 @@
         <div class="tl-item">
           <div class="tl-time">~3:15p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Hayden Valley <span class="tl-dur">· ~45 min · take our chances</span></div>
+            <div class="tl-name">Hayden Valley <span class="tl-dur">· ~45 min · take our chances</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Hayden+Valley%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Hayden Valley"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A wide open river valley, one of the best wildlife areas in the park. <strong>Bison herds are reliably here in the afternoon</strong> — big ones, often right beside the road. Work the pullouts with binoculars as we pass through. Grizzlies and wolves are a long shot at this hour (they come out closer to dusk), so this is a <strong>drive-through-and-see-what-turns-up</strong> stop, not a stakeout. We're not waiting around for the evening window</div>
           </div>
         </div>
@@ -1599,7 +1619,7 @@
         <div class="tl-item">
           <div class="tl-time">10:15a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">West Thumb Geyser Basin <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">West Thumb Geyser Basin <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=West+Thumb+Geyser+Basin%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to West Thumb Geyser Basin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Hot springs and geysers sitting right on the shore of Yellowstone Lake — a combination you see nowhere else in the park. Easy boardwalk</div>
           </div>
         </div>
@@ -1610,7 +1630,7 @@
         <div class="tl-item">
           <div class="tl-time">11:00a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Yellowstone Lake + lunch <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-name">Yellowstone Lake + lunch <span class="tl-dur">· ~1 hr</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Yellowstone+Lake%2C+Yellowstone+National+Park" target="_blank" rel="noopener" aria-label="Directions to Yellowstone Lake + lunch"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The biggest high-elevation lake in North America. Picnic on the shore — your last Yellowstone moment before crossing into Teton</div>
           </div>
         </div>
@@ -1621,7 +1641,7 @@
         <div class="tl-item">
           <div class="tl-time">12:45p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Colter Bay, Grand Teton <span class="tl-dur">· ~1 hr</span></div>
+            <div class="tl-name">Colter Bay, Grand Teton <span class="tl-dur">· ~1 hr</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Colter+Bay+Village%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Colter Bay, Grand Teton"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">First Teton stop. Easy lakeshore loop with the jagged Teton peaks rising straight up across Jackson Lake</div>
           </div>
         </div>
@@ -1632,7 +1652,7 @@
         <div class="tl-item">
           <div class="tl-time">2:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Jackson Lake Lodge <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-name">Jackson Lake Lodge <span class="tl-dur">· ~20 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Jackson+Lake+Lodge%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Jackson Lake Lodge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc"><strong>Don't bother going inside for the view.</strong> The famous 60-ft lobby windows frame the Tetons, but the <strong>outdoor back terrace has the same view and is open to anyone</strong> — walk around, don't queue through the lobby.<br><br><strong>The real reason to stop:</strong> the lodge sits on a rise, so you're looking <em>down</em> over <strong>Willow Flats</strong> — reliable moose habitat, and scanning it from above beats any roadside pull-off. Get the binoculars out.<br><br>Practical: bathrooms, AC, coffee. Fair warning — Signal Mountain later today gives a higher and more complete panorama, so keep this one short</div>
           </div>
         </div>
@@ -1643,7 +1663,7 @@
         <div class="tl-item">
           <div class="tl-time">2:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Oxbow Bend <span class="tl-dur">· ~30 min</span></div>
+            <div class="tl-name">Oxbow Bend <span class="tl-dur">· ~30 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Oxbow+Bend%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Oxbow Bend"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A calm bend in the Snake River that mirrors Mount Moran — the classic Teton reflection. Moose, otters, eagles, osprey</div>
           </div>
         </div>
@@ -1654,7 +1674,7 @@
         <div class="tl-item">
           <div class="tl-time">3:15p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Signal Mountain summit <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Signal Mountain summit <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Signal+Mountain+Summit%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Signal Mountain summit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A 5-mile paved road to the top — a 360° view over all of Jackson Hole and the Teton range. No hiking, big payoff</div>
           </div>
         </div>
@@ -1665,7 +1685,7 @@
         <div class="tl-item">
           <div class="tl-time">~4:45p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Check in · Driggs</div>
+            <div class="tl-name">Check in · Driggs<a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=1361+North+Highway+33%2C+Driggs%2C+ID" target="_blank" rel="noopener" aria-label="Directions to Check in · Driggs"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Two nights here as the Teton base</div>
           </div>
         </div>
@@ -1752,7 +1772,7 @@
         <div class="tl-item">
           <div class="tl-time">7:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Mormon Row + Antelope Flats <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Mormon Row + Antelope Flats <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Mormon+Row%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Mormon Row + Antelope Flats"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Historic 1890s homestead barns with the whole Teton range rising behind them — one of the most photographed scenes in the park. Bison and pronghorn graze the flats. Small dirt pullouts only, so early is easy</div>
           </div>
         </div>
@@ -1763,7 +1783,7 @@
         <div class="tl-item">
           <div class="tl-time">8:45a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Snake River Overlook <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-name">Snake River Overlook <span class="tl-dur">· ~20 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Snake+River+Overlook%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Snake River Overlook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The spot Ansel Adams photographed in 1942 — the river curving below the full sweep of the peaks. Roadside pull-off, no walking</div>
           </div>
         </div>
@@ -1774,7 +1794,7 @@
         <div class="tl-item">
           <div class="tl-time">9:35a</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Jenny Lake — ferry + Hidden Falls + Inspiration Point <span class="tl-dur">· ~3 hrs</span></div>
+            <div class="tl-name">Jenny Lake — ferry + Hidden Falls + Inspiration Point <span class="tl-dur">· ~3 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Jenny+Lake%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Jenny Lake — ferry + Hidden Falls + Inspiration Point"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">The park's signature outing. Take the little boat across the lake, then a short walk to <strong>Hidden Falls</strong> (a 100-ft cascade) and up to <strong>Inspiration Point</strong> for the view back over the lake. The South Jenny lot fills by mid-morning, so the earlier we're there the better. <strong>Read the ferry-line note below before we commit to the boat.</strong></div>
           </div>
         </div>
@@ -1795,7 +1815,7 @@
         <div class="tl-item">
           <div class="tl-time">1:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Jenny Lake Scenic Drive + Cathedral Group Turnout <span class="tl-dur">· ~40 min</span></div>
+            <div class="tl-name">Jenny Lake Scenic Drive + Cathedral Group Turnout <span class="tl-dur">· ~40 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Cathedral+Group+Turnout%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to Jenny Lake Scenic Drive + Cathedral Group Turnout"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc"><strong>The closest you get to the peaks by car.</strong> A 4-mile one-way road (north→south) branching off Teton Park Road. The <strong>Cathedral Group Turnout</strong> is the highlight — a head-on view of Grand Teton, Mount Owen and Teewinot standing together, the most dramatic cluster in the range. Also passes Jenny Lake Overlook and the String/Leigh Lake trailheads. Note it runs one-way southbound, so enter from the north end</div>
           </div>
         </div>
@@ -1806,7 +1826,7 @@
         <div class="tl-item">
           <div class="tl-time">2:10p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">String Lake <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-name">String Lake <span class="tl-dur">· ~1.5 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=String+Lake%2C+Grand+Teton+National+Park" target="_blank" rel="noopener" aria-label="Directions to String Lake"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Calm, shallow and warm enough to wade or swim, with the peaks right overhead — the best "let the kids loose" spot in the park. Quieter than Jenny Lake. Anyone wanting a real hike can do the Taggart Lake loop instead (3–4 mi, moderate) — split the group here</div>
           </div>
         </div>
@@ -1817,7 +1837,7 @@
         <div class="tl-item">
           <div class="tl-time">4:15p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Jackson town + dinner <span class="tl-dur">· ~2.5 hrs</span></div>
+            <div class="tl-name">Jackson town + dinner <span class="tl-dur">· ~2.5 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Jackson%2C+WY" target="_blank" rel="noopener" aria-label="Directions to Jackson town + dinner"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Town Square with its four elk-antler arches, shops, and dinner — each family picks its own spot. The main highway funnels all five cars straight in with no surprises</div>
           </div>
         </div>
@@ -1926,7 +1946,7 @@
         <div class="tl-item">
           <div class="tl-time">~12:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Salt Lake City <span class="tl-dur">· ~1.5 hrs</span></div>
+            <div class="tl-name">Salt Lake City <span class="tl-dur">· ~1.5 hrs</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Salt+Lake+City%2C+UT" target="_blank" rel="noopener" aria-label="Directions to Salt Lake City"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Lunch + a quick leg-stretch — Temple Square or a coffee. A brief stop, not a full sightseeing afternoon. Fuel up before the Nevada stretch</div>
           </div>
         </div>
@@ -1937,7 +1957,7 @@
         <div class="tl-item">
           <div class="tl-time">~3:30p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Bonneville Salt Flats <span class="tl-dur">· ~20 min</span></div>
+            <div class="tl-name">Bonneville Salt Flats <span class="tl-dur">· ~20 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Bonneville+Salt+Flats%2C+UT" target="_blank" rel="noopener" aria-label="Directions to Bonneville Salt Flats"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">A dead-flat white expanse of hard salt stretching to the horizon — pull off at the Wendover exit and walk out onto it. Free. Kids will want to run around</div>
           </div>
         </div>
@@ -1948,7 +1968,7 @@
         <div class="tl-item">
           <div class="tl-time">~6:00p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Check in · Elko, NV</div>
+            <div class="tl-name">Check in · Elko, NV<a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=1500+Idaho+Street%2C+Elko%2C+NV" target="_blank" rel="noopener" aria-label="Directions to Check in · Elko, NV"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Dinner in town. Roughly ~8 hrs driving today — tomorrow is a similar length, so rest up</div>
           </div>
         </div>
@@ -2010,7 +2030,7 @@
         <div class="tl-item">
           <div class="tl-time">~12:15p</div>
           <div class="tl-body"><span class="tl-dot"></span>
-            <div class="tl-name">Reno, NV <span class="tl-dur">· ~45 min</span></div>
+            <div class="tl-name">Reno, NV <span class="tl-dur">· ~45 min</span><a class="tl-dir" href="https://www.google.com/maps/dir/?api=1&destination=Reno%2C+NV" target="_blank" rel="noopener" aria-label="Directions to Reno, NV"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg></a></div>
             <div class="tl-desc">Lunch + stretch. Last real stop before the Sierra climb. <strong>Costco Reno</strong> (2200 Harvard Wy) is right off I-80/I-580 — the only Costco on the entire return leg, so it's the cheapest fuel of the drive, and it's open by the time you arrive</div>
           </div>
         </div>
