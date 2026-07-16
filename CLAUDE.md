@@ -55,7 +55,7 @@ print('li      ', len(re.findall(r'<li[ >]',h)), h.count('</li>'))
 ```
 All must match. (Note: naive `h.count('<li')` also matches `<link>` — use the regex above.)
 
-**Reference counts as of last known-good state:** 815 div, 10 iframe, 12 ul, 26 li, 1 style, 2 script.
+**Reference counts as of last known-good state:** 847 div, 10 iframe, 13 ul, 33 li, 1 style, 2 script.
 
 ### 3. Never estimate drive times or distances
 
